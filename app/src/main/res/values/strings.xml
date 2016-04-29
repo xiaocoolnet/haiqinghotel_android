@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">海情大酒店</string>
+
+    <!--首页-->
+    <string name="home_menu_text0">入住</string>
+    <string name="home_menu_text1">2天</string>
+    <string name="home_menu_text2">离店</string>
+    <string name="home_btn_reserve_now">立即预定</string>
+    <string name="home_btn_location">酒店位置</string>
+    <string name="home_btn_contact_us">联系我们</string>
+    <string name="home_btn_hotel_details">酒店详情</string>
+    <string name="home_line_onsale">当前促销</string>
+
+    <!--商城-->
+
+
+    <!--设施-->
+
+
+    <!--我的-->
+
+    <string name="mine_btn_collect">收藏</string>
+    <string name="mine_btn_shopping_cart">购物车</string>
+    <string name="mine_btn_message_center">消息中心</string>
+    <string name="mine_item_reserve">酒店预订</string>
+    <string name="mine_item_order_form">商城订单</string>
+    <string name="mine_item_vip_rank">会员积分</string>
+
 </resources>
