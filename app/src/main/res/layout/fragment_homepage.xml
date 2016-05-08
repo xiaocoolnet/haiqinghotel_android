@@ -188,7 +188,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/activity_size_15"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_size_5"
                             android:text="@string/home_btn_location" />
@@ -216,7 +216,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/activity_size_14"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_size_5"
                             android:text="@string/home_btn_contact_us" />
@@ -243,8 +243,8 @@
                             android:background="@mipmap/home_details_icon" />
 
                         <TextView
-                            android:layout_width="@dimen/activity_size_56"
-                            android:layout_height="@dimen/activity_size_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_size_5"
                             android:text="@string/home_btn_hotel_details" />

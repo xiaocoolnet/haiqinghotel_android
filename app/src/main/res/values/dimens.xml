@@ -45,6 +45,7 @@
     <dimen name="activity_size_16">16dp</dimen>
     <dimen name="activity_size_15">15dp</dimen>
     <dimen name="activity_size_60">60dp</dimen>
+    <dimen name="activity_size_65">65dp</dimen>
     <dimen name="activity_size_56">56dp</dimen>
     <dimen name="activity_size_50">50dp</dimen>
     <dimen name="activity_size_42">42dp</dimen>
