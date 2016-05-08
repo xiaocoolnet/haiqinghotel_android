@@ -8,5 +8,10 @@ public interface NetBaseConstant {
     /**
      * 接口前缀
      */
-    public String NET_BASE_PREFIX = "http://hq.xiaocool.net/index.php?g=apps&m=index&";
+    String NET_BASE_PREFIX = "http://hq.xiaocool.net/index.php?g=apps&m=index&";
+
+    /**
+     * 图片网址前缀
+     */
+    String NET_PIC_PREFIX = "http://hq.xiaocool.net";
 }

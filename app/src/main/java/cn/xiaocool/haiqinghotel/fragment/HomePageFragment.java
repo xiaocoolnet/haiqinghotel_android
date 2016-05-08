@@ -4,21 +4,84 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import cn.xiaocool.haiqinghotel.R;
+import cn.xiaocool.haiqinghotel.adapter.HomeOnsaleListAdapter;
 import cn.xiaocool.haiqinghotel.main.homepage.ContactUsActivity;
+import cn.xiaocool.haiqinghotel.net.request.HomepageRequest;
+import cn.xiaocool.haiqinghotel.net.request.NetUtil;
 import cn.xiaocool.haiqinghotel.utils.IntentUtils;
+import cn.xiaocool.haiqinghotel.dao.CommunalInterfaces;
 
 /**
  * Created by wzh on 2016/4/28.
  */
 public class HomePageFragment extends Fragment implements View.OnClickListener {
-    private RelativeLayout btnLocation,btnContact,btn_Details;
+    private RelativeLayout btnLocation, btnContact, btn_Details;
     private Context context;
+    private ListView onsaleList;
+    private HomeOnsaleListAdapter homeOnsaleListAdapter;
+    private String[] picName, name, intro, price;
+    private ArrayList<HashMap<String,Object>> arrayList;
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case CommunalInterfaces.ONSALE_LIST:
+                    JSONObject jsonObject = (JSONObject) msg.obj;
+                    Log.e("jsonObject 获取成功",jsonObject.toString());
+                    if (NetUtil.isConnnected(context)) {
+                        try {
+                            String status = jsonObject.getString("status");
+                            if (status.equals("success")) {
+                                JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+                                JSONObject object;
+                                int length = jsonArray.length();
+                                picName = new String[length];
+                                name = new String[length];
+                                intro = new String[length];
+                                price = new String[length];
+                                for (int i = 0; i < length; i++) {
+                                    object = (JSONObject) jsonArray.get(i);
+                                    picName[i] = object.getString("picture");
+                                    name[i] = object.getString("name");
+                                    intro[i] = object.getString("type");
+                                    price[i] = object.getString("price");
+                                    HashMap<String,Object> hashMap = new HashMap<>();
+                                    hashMap.put("picName",picName[i]);
+                                    hashMap.put("name",name[i]);
+                                    hashMap.put("intro",intro[i]);
+                                    hashMap.put("price",price[i]);
+                                    arrayList.add(hashMap);
+                                }
+                                homeOnsaleListAdapter = new HomeOnsaleListAdapter(context,arrayList);
+                                onsaleList.setAdapter(homeOnsaleListAdapter);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(context, "网络连接有问题", Toast.LENGTH_SHORT).show();
+                    }
+            }
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,8 +93,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
         context = getActivity();
+        initView();
+        new HomepageRequest(context, handler).onsaleList();
     }
 
     private void initView() {
@@ -41,11 +105,13 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         btnContact.setOnClickListener(this);
         btn_Details = (RelativeLayout) getView().findViewById(R.id.home_btn_details);
         btn_Details.setOnClickListener(this);
+        onsaleList = (ListView) getView().findViewById(R.id.home_onsale_list);
+        arrayList = new ArrayList<>();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.home_btn_contact_us:
                 IntentUtils.getIntent((Activity) context, ContactUsActivity.class);
                 break;

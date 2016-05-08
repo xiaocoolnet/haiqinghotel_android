@@ -16,4 +16,8 @@ public interface WebAddress extends NetBaseConstant {
      * 修改密码
      */
     String AMEND_PASS = NET_BASE_PREFIX + "a=forgetpwd";
+    /**
+     * 首页促销列表
+     */
+    String ONSALE_LIST = NET_BASE_PREFIX + "a=getpromotionlist";
 }

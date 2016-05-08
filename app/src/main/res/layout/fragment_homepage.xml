@@ -304,9 +304,9 @@
                 android:layout_height="match_parent">
             </cn.xiaocool.haiqinghotel.ui.NoScrollListView>
 
-            <include layout="@layout/onsale_list_item"></include>
-            <include layout="@layout/onsale_list_item"></include>
-            <include layout="@layout/onsale_list_item"></include>
+            <!--<include layout="@layout/onsale_list_item"></include>-->
+            <!--<include layout="@layout/onsale_list_item"></include>-->
+            <!--<include layout="@layout/onsale_list_item"></include>-->
         </LinearLayout>
     </cn.xiaocool.haiqinghotel.ui.ReboundScrollView>
 </LinearLayout>

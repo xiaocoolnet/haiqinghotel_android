@@ -17,7 +17,7 @@ public interface CommunalInterfaces {
 
 
     //homepage number 0x0100开始
-
+    int ONSALE_LIST = 0X0100;
 
 
 
