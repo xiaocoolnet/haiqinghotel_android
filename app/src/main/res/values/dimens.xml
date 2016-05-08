@@ -6,6 +6,8 @@
     <dimen name="activity_size_355">355dp</dimen>
     <dimen name="activity_size_350">350dp</dimen>
     <dimen name="activity_size_336">336dp</dimen>
+    <dimen name="activity_size_330">330dp</dimen>
+    <dimen name="activity_size_320">320dp</dimen>
     <dimen name="activity_size_300">300dp</dimen>
     <dimen name="activity_size_280">280dp</dimen>
     <dimen name="activity_size_260">260dp</dimen>

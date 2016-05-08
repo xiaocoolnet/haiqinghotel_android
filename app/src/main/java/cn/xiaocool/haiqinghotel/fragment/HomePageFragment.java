@@ -38,13 +38,13 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private ListView onsaleList;
     private HomeOnsaleListAdapter homeOnsaleListAdapter;
     private String[] picName, name, intro, price;
-    private ArrayList<HashMap<String,Object>> arrayList;
+    private ArrayList<HashMap<String, Object>> arrayList;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case CommunalInterfaces.ONSALE_LIST:
                     JSONObject jsonObject = (JSONObject) msg.obj;
-                    Log.e("jsonObject 获取成功",jsonObject.toString());
+                    Log.e("jsonObject 获取成功", jsonObject.toString());
                     if (NetUtil.isConnnected(context)) {
                         try {
                             String status = jsonObject.getString("status");
@@ -62,14 +62,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                                     name[i] = object.getString("name");
                                     intro[i] = object.getString("type");
                                     price[i] = object.getString("price");
-                                    HashMap<String,Object> hashMap = new HashMap<>();
-                                    hashMap.put("picName",picName[i]);
-                                    hashMap.put("name",name[i]);
-                                    hashMap.put("intro",intro[i]);
-                                    hashMap.put("price",price[i]);
+                                    HashMap<String, Object> hashMap = new HashMap<>();
+                                    hashMap.put("picName", picName[i]);
+                                    hashMap.put("name", name[i]);
+                                    hashMap.put("intro", intro[i]);
+                                    hashMap.put("price", price[i]);
                                     arrayList.add(hashMap);
                                 }
-                                homeOnsaleListAdapter = new HomeOnsaleListAdapter(context,arrayList);
+                                homeOnsaleListAdapter = new HomeOnsaleListAdapter(context, arrayList);
                                 onsaleList.setAdapter(homeOnsaleListAdapter);
                             }
                         } catch (JSONException e) {

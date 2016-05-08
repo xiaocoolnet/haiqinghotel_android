@@ -10,12 +10,12 @@ import cn.xiaocool.haiqinghotel.R;
 /**
  * Created by wzh on 2016/5/8.
  */
-public class OnsaleListActivity extends Activity implements View.OnClickListener {
+public class BookingNowActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.navigation_button);
+        setContentView(R.layout.home_booking_now);
     }
 
     @Override

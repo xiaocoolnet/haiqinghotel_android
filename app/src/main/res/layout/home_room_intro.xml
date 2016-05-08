@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray2"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_top"></include>
+    <!--顶部底部weight1:5分开-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <!--顶部viewPager-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_size_150"
+            android:layout_gravity="center_horizontal"
+            android:background="@mipmap/home_onsale_pic" />
+        <!--横向三个按钮-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_size_60"
+            android:background="@color/whilte"
+            android:orientation="horizontal">
+            <!--第一个-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_size_5"
+                    android:text="698"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/activity_size_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_size_5"
+                    android:text="门市价"
+                    android:textSize="@dimen/activity_size_15" />
+
+            </LinearLayout>
+            <!--第二个-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_size_5"
+                    android:text="498"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/activity_size_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_size_5"
+                    android:text="优惠价"
+                    android:textSize="@dimen/activity_size_15" />
+
+            </LinearLayout>
+
+            <!--第三个-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/activity_size_5"
+                        android:text="自助早餐"
+                        android:textSize="@dimen/activity_size_20" />
+
+                    <ImageView
+                        android:layout_width="@dimen/activity_size_14"
+                        android:layout_height="@dimen/activity_size_20"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_size_5"
+                        android:layout_marginTop="@dimen/activity_size_5"
+                        android:background="@mipmap/home_room_intro_fork"
+                        android:textSize="@dimen/activity_size_15" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <!--介绍分左右两段，各自分四行-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_size_150"
+            android:background="@color/whilte"
+            android:orientation="horizontal">
+            <!--左边四行-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <!--第一行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="上网"
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="wifi和宽带"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+                <!--第二行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="可住"
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="2人"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+
+                <!--第三行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="楼层"
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="5-8层"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+                <!--第四行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="床型"
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="单人床1.2*2.0m 2张"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!--右边四行-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <!--第一行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="窗户"
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="有"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+                <!--第二行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="卫浴"
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="独立"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+
+                <!--第三行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="面积"
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text="45-70m²"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+                <!--第四行-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text=""
+                        android:textSize="@dimen/activity_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_size_15"
+                        android:gravity="center_vertical"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/activity_size_16" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--底部栏-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:background="@color/whilte">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="总价："
+            android:textColor="@color/black"
+            android:textSize="@dimen/activity_size_20"
+            android:gravity="center"
+            android:layout_weight="1.5"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="498"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/activity_size_20"
+            android:gravity="center_vertical"
+            android:layout_weight="1.5"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="立即预定"
+            android:textColor="@color/whilte"
+            android:textSize="@dimen/activity_size_20"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@color/homepage_orange"
+            />
+
+    </LinearLayout>
+</LinearLayout>
