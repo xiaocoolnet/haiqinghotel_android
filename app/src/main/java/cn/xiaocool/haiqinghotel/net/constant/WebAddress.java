@@ -20,4 +20,8 @@ public interface WebAddress extends NetBaseConstant {
      * 首页促销列表
      */
     String ONSALE_LIST = NET_BASE_PREFIX + "a=getpromotionlist";
+    /**
+     * 房间详情
+     */
+    String ROOM_DETAILS = NET_BASE_PREFIX + "a=showbedroominfo";
 }

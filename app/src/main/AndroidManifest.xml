@@ -75,6 +75,8 @@
         </activity>
         <!--主页活动注册-->
         <activity android:name=".main.homepage.ContactUsActivity"></activity>
+        <activity android:name=".main.homepage.RoomIntroActivity"></activity>
+        <activity android:name=".main.homepage.BookingNowActivity"></activity>
 
 
         <!--商城活动注册-->

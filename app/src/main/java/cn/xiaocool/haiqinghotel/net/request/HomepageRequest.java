@@ -44,4 +44,25 @@ public class HomepageRequest  {
             }
         }.start();
     }
+
+    //获取房间详情
+    public void roomDetails(final String id) {
+        new Thread() {
+            Message msg = Message.obtain();
+
+            public void run() {
+                String data = "&id=" + id;
+                String result_data = NetUtil.getResponse(WebAddress.ROOM_DETAILS, data);
+                try {
+                    JSONObject obj = new JSONObject(result_data);
+                    msg.what = CommunalInterfaces.ROOM_DETAILS;
+                    msg.obj = obj;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
+    }
 }

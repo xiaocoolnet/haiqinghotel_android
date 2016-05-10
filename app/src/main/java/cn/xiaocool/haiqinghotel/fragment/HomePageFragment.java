@@ -3,6 +3,7 @@ package cn.xiaocool.haiqinghotel.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ import java.util.HashMap;
 import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.adapter.HomeOnsaleListAdapter;
 import cn.xiaocool.haiqinghotel.main.homepage.ContactUsActivity;
+import cn.xiaocool.haiqinghotel.main.homepage.RoomIntroActivity;
 import cn.xiaocool.haiqinghotel.net.request.HomepageRequest;
 import cn.xiaocool.haiqinghotel.net.request.NetUtil;
 import cn.xiaocool.haiqinghotel.utils.IntentUtils;
@@ -37,7 +40,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private Context context;
     private ListView onsaleList;
     private HomeOnsaleListAdapter homeOnsaleListAdapter;
-    private String[] picName, name, intro, price;
+    private String[] picName, name, intro, price, id, type;
     private ArrayList<HashMap<String, Object>> arrayList;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -56,17 +59,23 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                                 name = new String[length];
                                 intro = new String[length];
                                 price = new String[length];
+                                id = new String[length];
+                                type = new String[length];
                                 for (int i = 0; i < length; i++) {
                                     object = (JSONObject) jsonArray.get(i);
                                     picName[i] = object.getString("picture");
                                     name[i] = object.getString("name");
                                     intro[i] = object.getString("type");
                                     price[i] = object.getString("price");
+                                    id[i] = object.getString("id");
+                                    type[i] = object.getString("type");
                                     HashMap<String, Object> hashMap = new HashMap<>();
                                     hashMap.put("picName", picName[i]);
                                     hashMap.put("name", name[i]);
                                     hashMap.put("intro", intro[i]);
                                     hashMap.put("price", price[i]);
+                                    hashMap.put("id", id[i]);
+                                    hashMap.put("type", type[i]);
                                     arrayList.add(hashMap);
                                 }
                                 homeOnsaleListAdapter = new HomeOnsaleListAdapter(context, arrayList);
@@ -96,6 +105,28 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         context = getActivity();
         initView();
         new HomepageRequest(context, handler).onsaleList();
+        setItemOnclick();
+    }
+
+    private void setItemOnclick() {
+        onsaleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                HashMap<String, Object> intentMap = (HashMap<String, Object>) homeOnsaleListAdapter.getItem(position);
+                String roomId = (String) intentMap.get("id");
+                String roomName = (String) intentMap.get("name");
+                String type = (String) intentMap.get("type");
+                if (type.equals("1")) {
+                    Intent intent = new Intent();
+                    intent.setClass(context, RoomIntroActivity.class);
+                    intent.putExtra("roomId", roomId);
+                    intent.putExtra("roomName", roomName);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(context,"跳转餐饮",Toast.LENGTH_SHORT).show();//此处须跳转餐饮activity
+                }
+            }
+        });
     }
 
     private void initView() {

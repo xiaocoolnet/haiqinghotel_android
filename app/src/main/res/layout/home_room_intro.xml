@@ -36,9 +36,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/activity_size_5"
-                    android:text="698"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/activity_size_20" />
+                    android:textSize="@dimen/activity_size_20"
+                    android:id="@+id/tv_oprice" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,9 +61,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/activity_size_5"
-                    android:text="498"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/activity_size_20" />
+                    android:textSize="@dimen/activity_size_20"
+                    android:id="@+id/tv_price" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,9 +140,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_size_15"
                         android:gravity="center_vertical"
-                        android:text="wifi和宽带"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/activity_size_16" />
+                        android:textSize="@dimen/activity_size_16"
+                        android:id="@+id/tv_network" />
 
                 </LinearLayout>
 
@@ -166,9 +166,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_size_15"
                         android:gravity="center_vertical"
-                        android:text="2人"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/activity_size_16" />
+                        android:textSize="@dimen/activity_size_16"
+                        android:id="@+id/tv_prople_num" />
 
                 </LinearLayout>
 
@@ -193,9 +193,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_size_15"
                         android:gravity="center_vertical"
-                        android:text="5-8层"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/activity_size_16" />
+                        android:textSize="@dimen/activity_size_16"
+                        android:id="@+id/tv_floor" />
 
                 </LinearLayout>
 
@@ -219,9 +219,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_size_15"
                         android:gravity="center_vertical"
-                        android:text="单人床1.2*2.0m 2张"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/activity_size_16" />
+                        android:textSize="@dimen/activity_size_16"
+                        android:id="@+id/tv_bedsize" />
 
                 </LinearLayout>
 
@@ -252,9 +252,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_size_15"
                         android:gravity="center_vertical"
-                        android:text="有"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/activity_size_16" />
+                        android:textSize="@dimen/activity_size_16"
+                        android:id="@+id/tv_window" />
 
                 </LinearLayout>
 
@@ -278,9 +278,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_size_15"
                         android:gravity="center_vertical"
-                        android:text="独立"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/activity_size_16" />
+                        android:textSize="@dimen/activity_size_16"
+                        android:id="@+id/tv_bathroom" />
 
                 </LinearLayout>
 
@@ -305,9 +305,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_size_15"
                         android:gravity="center_vertical"
-                        android:text="45-70m²"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/activity_size_16" />
+                        android:textSize="@dimen/activity_size_16"
+                        android:id="@+id/tv_area" />
 
                 </LinearLayout>
 
@@ -362,12 +362,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="498"
             android:textColor="@color/blue"
             android:textSize="@dimen/activity_size_20"
             android:gravity="center_vertical"
             android:layout_weight="1.5"
-            />
+            android:id="@+id/tv_total_price" />
 
         <Button
             android:layout_width="match_parent"
@@ -378,7 +377,7 @@
             android:gravity="center"
             android:layout_weight="1"
             android:background="@color/homepage_orange"
-            />
+            android:id="@+id/btn_reserve_now" />
 
     </LinearLayout>
 </LinearLayout>

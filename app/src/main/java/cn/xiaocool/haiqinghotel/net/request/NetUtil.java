@@ -130,7 +130,7 @@ public class NetUtil {
                 return result = "请求失败，请检查网络";
             }
         }catch (Exception e){
-            return result = "请求失败，请检查网络"+e.getMessage().toString();
+            return result = "请求失败，请检查网络";//+e.getMessage().toString()
         }
     }
 
