@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">海情大酒店</string>
 
+    <string name="space">&#160;</string>
+    <string name="enter">\n</string>
     <!--首页-->
     <string name="home_menu_text0">入住</string>
     <string name="home_menu_text1">2天</string>
