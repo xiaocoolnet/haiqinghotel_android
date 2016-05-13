@@ -38,6 +38,7 @@
             <!--房型介绍-->
 
             <TextView
+                android:id="@+id/tv_introduce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_size_15"
@@ -87,6 +88,7 @@
         android:background="@color/whilte">
 
         <TextView
+            android:id="@+id/tv_check_in"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -97,6 +99,7 @@
             />
 
         <TextView
+            android:id="@+id/tv_check_out"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -144,6 +147,7 @@
     <!--第三行-->
 
     <LinearLayout
+        android:id="@+id/ll_room_num"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_size_50"
         android:layout_marginTop="@dimen/activity_size_10"
@@ -161,6 +165,7 @@
 
         <!--房间数-->
         <TextView
+            android:id="@+id/tv_roomCount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -230,6 +235,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_arrive_time"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_size_50"
         android:layout_marginTop="@dimen/activity_size_1"
@@ -247,11 +253,12 @@
 
         <!--时间-->
         <TextView
+            android:id="@+id/tv_arriveTime"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="20:00前"
+            android:text="18:00前"
             android:textSize="@dimen/activity_size_15" />
 
         <RelativeLayout

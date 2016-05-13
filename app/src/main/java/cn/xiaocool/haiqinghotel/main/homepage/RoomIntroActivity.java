@@ -31,11 +31,14 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
     private TextView tvTitle;
     private RelativeLayout btnExit;
     private LinearLayout llDateChoose;
-    private String roomId,roomName;
+    private String roomId, roomName;
+    private String price, oPrice, network, window, peopleNum, bathRoom, roomFloor, roomArea, bedSize;
+    private String textChechIn,textCheckOut;
+    private long msInDay,msOutDay;
     private Context context;
     private final int CODE = 1;
     private TextView tvOPrice, tvPrice, tvNetwork, tvWindow, tvPeopleNum, tvBathroom,
-            tvRoomFloor, tvRoomArea, tvBedSize,tvTotalPrice,tvInday,tvOutday,tvDayCount;
+            tvRoomFloor, tvRoomArea, tvBedSize, tvTotalPrice, tvInday, tvOutday, tvDayCount;
     private Button btnReserve;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -48,15 +51,15 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
                             Log.e("room details status is", status);
                             if (status.equals("success")) {
                                 JSONObject dataObject = (JSONObject) jsonObject.get("data");
-                                String oPrice = dataObject.getString("oprice");
-                                String price = dataObject.getString("price");
-                                String network = dataObject.getString("network");
-                                String window = dataObject.getString("window");
-                                String peopleNum = dataObject.getString("peoplenumber");
-                                String bathRoom = dataObject.getString("bathroom");
-                                String roomFloor = dataObject.getString("floor");
-                                String roomArea = dataObject.getString("acreage");
-                                String bedSize = dataObject.getString("bedsize");
+                                oPrice = dataObject.getString("oprice");
+                                price = dataObject.getString("price");
+                                network = dataObject.getString("network");
+                                window = dataObject.getString("window");
+                                peopleNum = dataObject.getString("peoplenumber");
+                                bathRoom = dataObject.getString("bathroom");
+                                roomFloor = dataObject.getString("floor");
+                                roomArea = dataObject.getString("acreage");
+                                bedSize = dataObject.getString("bedsize");
                                 Log.e("", "oprice " + oPrice + "price" + price + "network" + network + "window" + window
                                         + "peopleNum" + peopleNum + "bathroom" + bathRoom + "floor" + roomFloor + "roomarea"
                                         + roomArea + "bedsize" + bedSize);
@@ -83,6 +86,7 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,16 +103,25 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CODE){
+        if (requestCode == CODE) {
             String indayMonNum = data.getStringExtra("inDayMonth1");
             String indayDayNum = data.getStringExtra("inDayNum0");
             String outdayMonNum = data.getStringExtra("outMonth1");
             String outdayDayNum = data.getStringExtra("outDayNum0");
-            String dayCount = data.getStringExtra("dayCount");
-            Log.e("五个数：",indayMonNum + indayDayNum + outdayMonNum + outdayDayNum + dayCount);
-            tvInday.setText("入住：" + indayMonNum + "月" + indayDayNum);
-            tvOutday.setText("离店：" + outdayMonNum + "月" + outdayDayNum);
+            long dayCount = data.getLongExtra("dayCount",0);
+            msInDay = data.getLongExtra("msInDate",0);
+            msOutDay = data.getLongExtra("msOutDate",0);
+            Log.e("ms in out day is", String.valueOf(msInDay + "bbb" + msOutDay));
+            Log.e("五个数：", indayMonNum + indayDayNum + outdayMonNum + outdayDayNum + "ccc" + dayCount);
+            textChechIn = "入住：" + indayMonNum + "月" + indayDayNum + "日";
+            tvInday.setText(textChechIn);
+            textCheckOut = "离店：" + outdayMonNum + "月" + outdayDayNum + "日";
+            tvOutday.setText(textCheckOut);
             tvDayCount.setText("共" + dayCount + "晚");
+            int intPrice = Integer.parseInt(price);
+            int count = (int) (dayCount * intPrice);
+            Log.e("count is", String.valueOf(count));
+            tvTotalPrice.setText("" + count);
         }
     }
 
@@ -145,10 +158,17 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
                 finish();
                 break;
             case R.id.btn_reserve_now:
-                IntentUtils.getIntent(this,BookingNowActivity.class);
+                Intent reserveIntent = new Intent(this, BookingNowActivity.class);
+                reserveIntent.putExtra("bedsize",bedSize);
+                reserveIntent.putExtra("network",network);
+                reserveIntent.putExtra("textCheckIn",textChechIn);
+                reserveIntent.putExtra("textCheckOut",textCheckOut);
+                reserveIntent.putExtra("msInDay",msInDay);
+                reserveIntent.putExtra("msOutDay",msOutDay);
+                startActivity(reserveIntent);
                 break;
             case R.id.reserve_choose_date:
-                Intent intent = new Intent(this,CalenderMainActivity.class);
+                Intent intent = new Intent(this, CalenderMainActivity.class);
                 startActivityForResult(intent, CODE);
                 break;
         }

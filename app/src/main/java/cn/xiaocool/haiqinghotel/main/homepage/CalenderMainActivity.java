@@ -184,6 +184,9 @@ public class CalenderMainActivity extends Activity implements MyCalendar.OnDaySe
                 dateIntent.putExtra("outMonth1",outMonthNum1);
                 dateIntent.putExtra("outDayNum0",outDayNum0);
                 dateIntent.putExtra("dayCount",dayCount);
+                //传输毫秒值
+                dateIntent.putExtra("msInDate",timeStart);
+                dateIntent.putExtra("msOutDate",timeEnd);
                 setResult(1,dateIntent);
                 finish();
             }
