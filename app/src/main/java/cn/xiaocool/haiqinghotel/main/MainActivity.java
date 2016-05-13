@@ -60,6 +60,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mTabs[3] = (Button) findViewById(R.id.btn_mine);
         mTabs[3].setOnClickListener(this);
         mTabs[0].setSelected(true);
+
     }
 
     @Override
@@ -89,8 +90,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             fragmentTransaction.show(fragments[index]);
             fragmentTransaction.commit();
         }
-        mTabs[currentIndex].setSelected(true);
-        mTabs[index].setSelected(false);
+        mTabs[currentIndex].setSelected(false);
+        mTabs[index].setSelected(true);
         currentIndex = index;
 
     }

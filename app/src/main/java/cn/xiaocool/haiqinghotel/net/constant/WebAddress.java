@@ -9,6 +9,10 @@ public interface WebAddress extends NetBaseConstant {
      */
     String SEND_CODE = NET_BASE_PREFIX + "a=SendMobileCode";
     /**
+     * 发送验证码后缀
+     */
+    String LOGIN = NET_BASE_PREFIX + "a=applogin";
+    /**
      * 注册后缀
      */
     String REGISTER = NET_BASE_PREFIX + "a=AppRegister";

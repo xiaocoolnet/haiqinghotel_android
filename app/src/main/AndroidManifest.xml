@@ -61,6 +61,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity">
+
+        </activity>
+
+
+        <activity android:name=".main.RegisterActivity"></activity>
+        <activity android:name=".main.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -69,10 +75,6 @@
         </activity>
 
 
-        <activity android:name=".main.RegisterActivity">
-
-
-        </activity>
         <!--主页活动注册-->
         <activity android:name=".main.homepage.ContactUsActivity"></activity>
         <activity android:name=".main.homepage.RoomIntroActivity"></activity>

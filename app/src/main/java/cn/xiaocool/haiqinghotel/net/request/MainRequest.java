@@ -25,6 +25,27 @@ public class MainRequest {
     }
 
 
+    //登录
+    public void login(final String phoNum, final String password) {
+        new Thread() {
+            Message msg = Message.obtain();
+
+            public void run() {
+                String data = "&phone="+ phoNum + "&password=" + password;
+                String result_data = NetUtil.getResponse(WebAddress.LOGIN, data);
+                try {
+                    JSONObject obj = new JSONObject(result_data);
+                    msg.what = CommunalInterfaces.LOGIN;
+                    msg.obj = obj;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
+    }
+
     //发送验证码
     public void sendCode(final String phoNum) {
         new Thread() {

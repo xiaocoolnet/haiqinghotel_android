@@ -10,6 +10,7 @@ public interface CommunalInterfaces {
     int BTN_UNTOUCH = 0x0001;//发送验证码按钮不可点击
     int BTN_TOUCH = 0x0002;//发送验证码按钮可点击
     int REGISTER = 0x0003;//注册
+    int LOGIN = 0x0004;//登录
 
 
 
