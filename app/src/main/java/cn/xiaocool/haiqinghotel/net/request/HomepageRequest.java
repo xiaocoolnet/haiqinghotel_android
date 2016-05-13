@@ -14,7 +14,7 @@ import cn.xiaocool.haiqinghotel.net.constant.WebAddress;
 /**
  * Created by wzh on 2016/5/7.
  */
-public class HomepageRequest  {
+public class HomepageRequest {
     private Context mContext;
     private Handler handler;
 
@@ -56,6 +56,31 @@ public class HomepageRequest  {
                 try {
                     JSONObject obj = new JSONObject(result_data);
                     msg.what = CommunalInterfaces.ROOM_DETAILS;
+                    msg.obj = obj;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
+    }
+
+    //发送立即预定房间请求
+    public void reserveNow(final String userId, final String goodId, final long beginTime, final long endTime,
+                           final String arriveTime, final String goodNum, final String peoNum, final String phoNum,
+                           final String remark) {
+        new Thread() {
+            Message msg = Message.obtain();
+
+            public void run() {
+                String data = "&userid=" + userId + "&goodsid=" + goodId + "&begintime=" + beginTime + "&endtime="
+                        + endTime + "&arrivetime=" + arriveTime + "&goodnum=" + goodNum + "&peoplenum=" + peoNum +
+                        "&mobile=" + phoNum + "&remark=" + remark;
+                String result_data = NetUtil.getResponse(WebAddress.RESERVE_ROOM_NOW, data);
+                try {
+                    JSONObject obj = new JSONObject(result_data);
+                    msg.what = CommunalInterfaces.RESERVE_ROOM_NOW;
                     msg.obj = obj;
                 } catch (JSONException e) {
                     e.printStackTrace();

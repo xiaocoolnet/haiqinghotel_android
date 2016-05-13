@@ -165,6 +165,8 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
                 reserveIntent.putExtra("textCheckOut",textCheckOut);
                 reserveIntent.putExtra("msInDay",msInDay);
                 reserveIntent.putExtra("msOutDay",msOutDay);
+                Log.e("room id isisisis",roomId);
+                reserveIntent.putExtra("roomId",roomId);
                 startActivity(reserveIntent);
                 break;
             case R.id.reserve_choose_date:

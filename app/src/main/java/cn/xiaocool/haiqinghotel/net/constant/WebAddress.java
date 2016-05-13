@@ -24,4 +24,8 @@ public interface WebAddress extends NetBaseConstant {
      * 房间详情
      */
     String ROOM_DETAILS = NET_BASE_PREFIX + "a=showbedroominfo";
+    /**
+     * 立即预定房间
+     */
+    String RESERVE_ROOM_NOW = NET_BASE_PREFIX + "a=bookingroom";
 }

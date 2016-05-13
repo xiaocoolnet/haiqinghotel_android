@@ -208,6 +208,7 @@
 
         <!--人数-->
         <EditText
+            android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -296,6 +297,7 @@
 
         <!--手机号-->
         <EditText
+            android:id="@+id/et_phoNum"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -335,6 +337,7 @@
             android:layout_marginTop="@dimen/activity_size_5"
             />
         <EditText
+            android:id="@+id/et_remark"
             android:layout_width="@dimen/activity_size_330"
             android:layout_height="@dimen/activity_size_70"
             android:layout_gravity="center_horizontal"
@@ -376,6 +379,7 @@
             />
 
         <Button
+            android:id="@+id/btn_booking_now"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="立即预定"

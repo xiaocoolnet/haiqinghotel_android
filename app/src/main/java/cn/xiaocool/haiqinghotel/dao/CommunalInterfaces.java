@@ -19,7 +19,7 @@ public interface CommunalInterfaces {
     //homepage number 0x0100开始
     int ONSALE_LIST = 0x0100;
     int ROOM_DETAILS = 0x0101;
-
+    int RESERVE_ROOM_NOW = 0x0102;
 
 
 

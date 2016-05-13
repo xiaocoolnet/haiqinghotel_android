@@ -3,18 +3,29 @@ package cn.xiaocool.haiqinghotel.main.homepage;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import cn.xiaocool.haiqinghotel.R;
+import cn.xiaocool.haiqinghotel.net.request.HomepageRequest;
+import cn.xiaocool.haiqinghotel.dao.CommunalInterfaces;
+import cn.xiaocool.haiqinghotel.net.request.NetUtil;
 
 /**
  * Created by wzh on 2016/5/8.
@@ -23,10 +34,32 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
     private PopupWindow mPopupWindow;
     private LinearLayout llRoomNum, llArriveTime;
     private TextView tvTitle, tvRoomCount, tvArriveTime;
-    private TextView tvIntro,tvCheckIn,tvCheckOUt;
+    private String roomCount, arriveTime, goodId;
+    private TextView tvIntro, tvCheckIn, tvCheckOUt;
     private RelativeLayout rlExit;
-    private String bedSize,network,checkIn,checkOut;
-    private long msInDay,msOutDay;
+    private String bedSize, network, checkIn, checkOut;
+    private long msInDay, msOutDay;
+    private Button btnBookNow;
+    private EditText etName, etPhoNum, etRemark;
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case CommunalInterfaces.RESERVE_ROOM_NOW:
+                    JSONObject jsonObject = (JSONObject) msg.obj;
+                    try {
+                        String status = jsonObject.getString("status");
+                        if (status.equals("success")) {
+                            Toast.makeText(BookingNowActivity.this, "预订酒店房间成功！", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(BookingNowActivity.this,"预定失败！",Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +82,24 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
         tvCheckIn = (TextView) findViewById(R.id.tv_check_in);
         tvCheckOUt = (TextView) findViewById(R.id.tv_check_out);
         tvIntro = (TextView) findViewById(R.id.tv_introduce);
+        btnBookNow = (Button) findViewById(R.id.btn_booking_now);
+        btnBookNow.setOnClickListener(this);
+        etName = (EditText) findViewById(R.id.et_name);
+        etPhoNum = (EditText) findViewById(R.id.et_phoNum);
+        etRemark = (EditText) findViewById(R.id.et_remark);
         Intent intent = getIntent();
-        Log.e("bedsize network",bedSize + network);
+        Log.e("bedsize network", bedSize + network);
         bedSize = intent.getStringExtra("bedsize");
         network = intent.getStringExtra("network");
         checkIn = intent.getStringExtra("textCheckIn");
         checkOut = intent.getStringExtra("textCheckOut");
+        Log.e("check in day is ",checkIn + checkOut);
+        goodId = intent.getStringExtra("roomId");
+        Log.e("roomId here is  ",goodId);
         //取到毫秒值
-        msInDay = intent.getLongExtra("msInDay",0);
-        msOutDay = intent.getLongExtra("msOutDay",0);
-        Log.e("ms time",msInDay + "aaaa" + msOutDay);
+        msInDay = intent.getLongExtra("msInDay", 0);
+        msOutDay = intent.getLongExtra("msOutDay", 0);
+        Log.e("ms time", msInDay + "aaaa" + msOutDay);
         tvCheckIn.setText(checkIn);
         tvCheckOUt.setText(checkOut);
         //介绍行
@@ -113,34 +154,54 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
                 break;
             case R.id.pop_roomCount1:
                 tvRoomCount.setText("1间");
+                roomCount = "1";
                 mPopupWindow.dismiss();
                 break;
             case R.id.pop_roomCount2:
                 tvRoomCount.setText("2间");
+                roomCount = "2";
                 mPopupWindow.dismiss();
                 break;
             case R.id.pop_roomCount3:
                 tvRoomCount.setText("3间");
+                roomCount = "3";
                 mPopupWindow.dismiss();
                 break;
             case R.id.pop_roomCount4:
                 tvRoomCount.setText("4间");
+                roomCount = "4";
                 mPopupWindow.dismiss();
                 break;
             case R.id.pop_time0:
                 tvArriveTime.setText("12:00前");
+                arriveTime = "12:00前";
                 mPopupWindow.dismiss();
                 break;
             case R.id.pop_time1:
                 tvArriveTime.setText("18:00前");
+                arriveTime = "18:00前";
                 mPopupWindow.dismiss();
                 break;
             case R.id.pop_time2:
                 tvArriveTime.setText("24:00前");
+                arriveTime = "24:00前";
                 mPopupWindow.dismiss();
                 break;
             case R.id.btn_back:
                 finish();
+                break;
+            case R.id.btn_booking_now:
+                String name = etName.getText().toString();
+                String phoNum = etPhoNum.getText().toString();
+                String remark = etRemark.getText().toString();
+                Log.e("入参数据",goodId + arriveTime + phoNum + remark);
+                if (NetUtil.isConnnected(this)) {
+                    //发起预定房间请求
+                    new HomepageRequest(this, handler).reserveNow("578", goodId, msInDay, msOutDay, arriveTime,
+                            "2", "1", phoNum, remark);
+                }else{
+                    Toast.makeText(this,"无网络连接！",Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
