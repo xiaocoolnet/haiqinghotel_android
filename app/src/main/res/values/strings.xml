@@ -11,6 +11,10 @@
     <string name="btn_input_password">请输入密码</string>
     <string name="btn_retrieve_password">找回密码</string>
     <string name="btn_phoNum_login">手机号快捷登录</string>
+
+    <!--注册界面-->
+
+    <string name="register">注册</string>
     <!--首页-->
     <string name="home_menu_text0">入住</string>
     <string name="home_menu_text1">2天</string>
@@ -21,6 +25,12 @@
     <string name="home_btn_hotel_details">酒店详情</string>
     <string name="home_line_onsale">当前促销</string>
     <string name="home_booking_now_details">房间详情</string>
+    <string name="home_catering_details">商品描述</string>
+    <string name="home_catering_set_meal">套餐内容</string>
+    <string name="home_catering_standard">规格</string>
+    <string name="home_catering_unit_price">单价</string>
+    <string name="home_catering_price">价值：</string>
+    <string name="home_catering_pre_price">优惠价：</string>
 
     <!--商城-->
 

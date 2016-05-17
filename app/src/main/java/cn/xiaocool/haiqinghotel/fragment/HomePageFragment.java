@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.adapter.HomeOnsaleListAdapter;
+import cn.xiaocool.haiqinghotel.main.homepage.CateringIntroActivity;
 import cn.xiaocool.haiqinghotel.main.homepage.ContactUsActivity;
 import cn.xiaocool.haiqinghotel.main.homepage.RoomIntroActivity;
 import cn.xiaocool.haiqinghotel.net.request.HomepageRequest;
@@ -113,17 +114,24 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HashMap<String, Object> intentMap = (HashMap<String, Object>) homeOnsaleListAdapter.getItem(position);
-                String roomId = (String) intentMap.get("id");
-                String roomName = (String) intentMap.get("name");
+                String goodId = (String) intentMap.get("id");
+                String goodName = (String) intentMap.get("name");
                 String type = (String) intentMap.get("type");
                 if (type.equals("1")) {
                     Intent intent = new Intent();
                     intent.setClass(context, RoomIntroActivity.class);
-                    intent.putExtra("roomId", roomId);
-                    intent.putExtra("roomName", roomName);
+                    intent.putExtra("roomId", goodId);
+                    intent.putExtra("roomName", goodName);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(context,"跳转餐饮",Toast.LENGTH_SHORT).show();//此处须跳转餐饮activity
+                } else {
+//                    Toast.makeText(context,"跳转餐饮",Toast.LENGTH_SHORT).show();//此处须跳转餐饮activity
+                    if (type.equals("2")) {
+                        Intent intent = new Intent();
+                        intent.setClass(context, CateringIntroActivity.class);
+                        intent.putExtra("cateringId",goodId);
+                        intent.putExtra("cateringName",goodName);
+                        startActivity(intent);
+                    }
                 }
             }
         });

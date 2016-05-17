@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import cn.xiaocool.haiqinghotel.fragment.EcshopFragment;
 import cn.xiaocool.haiqinghotel.fragment.FacilityFragment;
 import cn.xiaocool.haiqinghotel.fragment.HomePageFragment;
 import cn.xiaocool.haiqinghotel.fragment.MineFragment;
+import view.HQApplacation;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -47,6 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         fragmentTransaction.add(R.id.fragment_container, homePageFragment);
         fragmentTransaction.commit();
         initBtn();
+        Log.e("HQUID is ", String.valueOf(HQApplacation.UID));
     }
 
     private void initBtn() {

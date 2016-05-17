@@ -21,6 +21,8 @@ public interface CommunalInterfaces {
     int ONSALE_LIST = 0x0100;
     int ROOM_DETAILS = 0x0101;
     int RESERVE_ROOM_NOW = 0x0102;
+    int CATERING_DETAILS = 0x0103;
+    int RESERVE_CATERING = 0x0104;
 
 
 

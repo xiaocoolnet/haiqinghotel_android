@@ -32,4 +32,12 @@ public interface WebAddress extends NetBaseConstant {
      * 立即预定房间
      */
     String RESERVE_ROOM_NOW = NET_BASE_PREFIX + "a=bookingroom";
+    /**
+     * 获取餐饮信息
+     */
+    String CATERING_DETAILS = NET_BASE_PREFIX + "a=showcateringinfo";
+    /**
+     * 预订餐饮
+     */
+    String RESERVE_CATERING = NET_BASE_PREFIX + "a=bookingcatering";
 }

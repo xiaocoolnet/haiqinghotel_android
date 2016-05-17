@@ -24,6 +24,7 @@ import java.util.ArrayList;
  */
 public class HQApplacation extends Application {
     private static HQApplacation mInstance = null;
+    public static int UID;
 
     @Override
     public void onCreate() {
@@ -31,6 +32,7 @@ public class HQApplacation extends Application {
         super.onCreate();
         mInstance = this;
         SharedPreferences sp=getSharedPreferences("UserUID", Context.MODE_PRIVATE);
+        UID=sp.getInt("UID", 0);
         initImageLoader(getApplicationContext());
     }
 

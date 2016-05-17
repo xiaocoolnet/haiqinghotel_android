@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -31,6 +32,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     private Button btnSendCode;
     private ImageView btnRegister;
     private EditText edName, edPhoNum, edCode, edPassword;
+    private TextView tvTitle;
     private String phoneNumber, code;
     private CheckBox cbAgree;
     private static int second;
@@ -99,6 +101,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         edPhoNum = (EditText) findViewById(R.id.main_ed_phonum);
         edCode = (EditText) findViewById(R.id.main_ed_code);
         edPassword = (EditText) findViewById(R.id.main_ed_password);
+        tvTitle = (TextView) findViewById(R.id.top_title);
+        tvTitle.setText(this.getString(R.string.register));
     }
 
     @Override

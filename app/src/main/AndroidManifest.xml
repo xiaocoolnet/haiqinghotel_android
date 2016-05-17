@@ -80,6 +80,8 @@
         <activity android:name=".main.homepage.RoomIntroActivity"></activity>
         <activity android:name=".main.homepage.BookingNowActivity"></activity>
         <activity android:name=".main.homepage.CalenderMainActivity"></activity>
+        <activity android:name=".main.homepage.CateringIntroActivity"></activity>
+        <activity android:name=".main.homepage.BookingCateringActivity"></activity>
 
 
         <!--商城活动注册-->

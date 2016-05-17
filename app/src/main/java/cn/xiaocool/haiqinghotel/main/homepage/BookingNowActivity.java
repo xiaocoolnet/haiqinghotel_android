@@ -26,6 +26,7 @@ import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.net.request.HomepageRequest;
 import cn.xiaocool.haiqinghotel.dao.CommunalInterfaces;
 import cn.xiaocool.haiqinghotel.net.request.NetUtil;
+import view.HQApplacation;
 
 /**
  * Created by wzh on 2016/5/8.
@@ -197,7 +198,7 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
                 Log.e("入参数据",goodId + arriveTime + phoNum + remark);
                 if (NetUtil.isConnnected(this)) {
                     //发起预定房间请求
-                    new HomepageRequest(this, handler).reserveNow("578", goodId, msInDay, msOutDay, arriveTime,
+                    new HomepageRequest(this, handler).reserveNow(HQApplacation.UID, goodId, msInDay, msOutDay, arriveTime,
                             "2", "1", phoNum, remark);
                 }else{
                     Toast.makeText(this,"无网络连接！",Toast.LENGTH_SHORT).show();

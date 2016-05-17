@@ -81,6 +81,7 @@
             android:id="@+id/et_password"
             android:layout_width="@dimen/activity_size_350"
             android:layout_height="@dimen/activity_size_45"
+            android:inputType="textPassword"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_size_15"
             android:background="@null"
@@ -88,23 +89,34 @@
 
     </LinearLayout>
 
-<!--登录按钮-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_size_40"
+        android:layout_marginTop="@dimen/activity_size_10">
+        <CheckBox
+            android:id="@+id/cb_remember"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/activity_size_15"
+            android:textColor="@color/gray3"
+            android:text="记住账号及密码"/>
+    </LinearLayout>
+
+    <!--登录按钮-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_size_50"
-        android:layout_marginTop="@dimen/activity_size_50"
-        >
+        android:layout_marginTop="@dimen/activity_size_10">
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="@dimen/activity_size_350"
             android:layout_height="@dimen/activity_size_50"
-            android:background="@mipmap/btn_send_code"
             android:layout_centerInParent="true"
+            android:background="@mipmap/btn_send_code"
             android:text="@string/btn_login"
-            android:textSize="@dimen/activity_size_18"
             android:textColor="@color/whilte"
-            />
+            android:textSize="@dimen/activity_size_18" />
     </RelativeLayout>
 
     <!--最下面一行-->
@@ -153,7 +165,6 @@
 
         </RelativeLayout>
     </LinearLayout>
-
 
 
 </LinearLayout>
