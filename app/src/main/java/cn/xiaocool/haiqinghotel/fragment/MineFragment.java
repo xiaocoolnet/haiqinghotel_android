@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import cn.xiaocool.haiqinghotel.R;
+import cn.xiaocool.haiqinghotel.main.mine.MyOrderActivity;
 import cn.xiaocool.haiqinghotel.main.mine.MyRoomOrderActivity;
 import cn.xiaocool.haiqinghotel.utils.IntentUtils;
 
@@ -17,8 +18,9 @@ import cn.xiaocool.haiqinghotel.utils.IntentUtils;
  * Created by wzh on 2016/4/28.
  */
 public class MineFragment extends Fragment implements View.OnClickListener {
-private LinearLayout llRoomOrder;
+    private LinearLayout llRoomOrder;
     private Context context;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,9 +42,9 @@ private LinearLayout llRoomOrder;
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.ll_mine_room_order:
-                IntentUtils.getIntent((Activity) context, MyRoomOrderActivity.class);
+                IntentUtils.getIntent((Activity) context, MyOrderActivity.class);
                 break;
         }
     }

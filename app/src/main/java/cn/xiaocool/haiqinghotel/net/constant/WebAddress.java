@@ -53,6 +53,6 @@ public interface WebAddress extends NetBaseConstant {
     /**
      * 获取我的餐饮订单
      */
-    String MINE_CATERING_ORDER = NET_BASE_PREFIX + "a=getbookingorderlist";
+    String MINE_CATERING_ORDER = NET_BASE_PREFIX + "a=getcateringorderlist";
 
 }

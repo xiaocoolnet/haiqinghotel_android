@@ -52,7 +52,7 @@ public class MineRequest {
 
             public void run() {
                 String data = "&userid=" + HQApplacation.UID;
-                String result_data = NetUtil.getResponse(WebAddress.MINE_ROOM_ORDER, data);
+                String result_data = NetUtil.getResponse(WebAddress.MINE_CATERING_ORDER, data);
                 try {
                     JSONObject obj = new JSONObject(result_data);
                     msg.what = CommunalInterfaces.MINE_CATERING_ORDER;
