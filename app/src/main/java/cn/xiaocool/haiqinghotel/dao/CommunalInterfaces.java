@@ -23,6 +23,7 @@ public interface CommunalInterfaces {
     int RESERVE_ROOM_NOW = 0x0102;
     int CATERING_DETAILS = 0x0103;
     int RESERVE_CATERING = 0x0104;
+    int HOME_RESERVE_ROOM = 0x0105;
 
 
 

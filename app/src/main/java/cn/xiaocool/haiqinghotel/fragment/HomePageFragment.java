@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.adapter.HomeOnsaleListAdapter;
 import cn.xiaocool.haiqinghotel.main.homepage.CateringIntroActivity;
 import cn.xiaocool.haiqinghotel.main.homepage.ContactUsActivity;
+import cn.xiaocool.haiqinghotel.main.homepage.HomeReserveNowActivity;
 import cn.xiaocool.haiqinghotel.main.homepage.RoomIntroActivity;
 import cn.xiaocool.haiqinghotel.net.request.HomepageRequest;
 import cn.xiaocool.haiqinghotel.net.request.NetUtil;
@@ -40,6 +42,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout btnLocation, btnContact, btn_Details;
     private Context context;
     private ListView onsaleList;
+    private Button btnReserveNow;
     private HomeOnsaleListAdapter homeOnsaleListAdapter;
     private String[] picName, name, intro, price, id, type;
     private ArrayList<HashMap<String, Object>> arrayList;
@@ -146,6 +149,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         btn_Details.setOnClickListener(this);
         onsaleList = (ListView) getView().findViewById(R.id.home_onsale_list);
         arrayList = new ArrayList<>();
+        btnReserveNow = (Button) getView().findViewById(R.id.home_btn_reserve_now);
+        btnReserveNow.setOnClickListener(this);
     }
 
     @Override
@@ -153,6 +158,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.home_btn_contact_us:
                 IntentUtils.getIntent((Activity) context, ContactUsActivity.class);
+                break;
+            case R.id.home_btn_reserve_now:
+                IntentUtils.getIntent((Activity) context, HomeReserveNowActivity.class);
                 break;
         }
     }

@@ -60,6 +60,7 @@ public class HomeOnsaleListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         //加载布局,绑定组件
         convertView = layoutInflater.inflate(R.layout.home_onsale_list_item, null);
+
         ImageView onsalePic = (ImageView) convertView.findViewById(R.id.home_onsale_pic);
         TextView onsaleName = (TextView) convertView.findViewById(R.id.home_onsale_name);
         TextView onsaleIntro = (TextView) convertView.findViewById(R.id.home_onsale_intro);

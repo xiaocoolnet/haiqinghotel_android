@@ -82,6 +82,7 @@
         <activity android:name=".main.homepage.CalenderMainActivity"></activity>
         <activity android:name=".main.homepage.CateringIntroActivity"></activity>
         <activity android:name=".main.homepage.BookingCateringActivity"></activity>
+        <activity android:name=".main.homepage.HomeReserveNowActivity"></activity>
 
 
         <!--商城活动注册-->

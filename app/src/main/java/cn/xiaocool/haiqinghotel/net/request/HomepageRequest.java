@@ -116,7 +116,7 @@ public class HomepageRequest {
     //立即预定餐饮
     public void reserveCatering(final int userId, final String goodId, final String roomName, final String repastTime,
                                 final String goodNum, final String peopleNum, final String phoNum, final String remark,
-                                final String name,final String price ) {
+                                final String name, final String price) {
         new Thread() {
             Message msg = Message.obtain();
 
@@ -125,10 +125,31 @@ public class HomepageRequest {
                         "&repasttime=" + repastTime + "&goodnum=" + goodNum + "&peoplenum=" + peopleNum
                         + "&mobile=" + phoNum + "&remark=" + remark + "peoplename" + name + "money" + price;
                 String result_data = NetUtil.getResponse(WebAddress.RESERVE_CATERING, data);
-                Log.e("result data",result_data);
+                Log.e("result data", result_data);
                 try {
                     JSONObject obj = new JSONObject(result_data);
                     msg.what = CommunalInterfaces.RESERVE_CATERING;
+                    msg.obj = obj;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
+    }
+
+    //获取首页促销客房列表
+    public void homeReserveRoom() {
+        new Thread() {
+            Message msg = Message.obtain();
+
+            public void run() {
+                String data = "";
+                String result_data = NetUtil.getResponse(WebAddress.HOME_RESERVE_ROOM, data);
+                try {
+                    JSONObject obj = new JSONObject(result_data);
+                    msg.what = CommunalInterfaces.HOME_RESERVE_ROOM;
                     msg.obj = obj;
                 } catch (JSONException e) {
                     e.printStackTrace();
