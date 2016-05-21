@@ -12,13 +12,14 @@ import android.widget.LinearLayout;
 import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.main.mine.MyOrderActivity;
 import cn.xiaocool.haiqinghotel.main.mine.MyRoomOrderActivity;
+import cn.xiaocool.haiqinghotel.main.mine.MyShopOrderActivity;
 import cn.xiaocool.haiqinghotel.utils.IntentUtils;
 
 /**
  * Created by wzh on 2016/4/28.
  */
 public class MineFragment extends Fragment implements View.OnClickListener {
-    private LinearLayout llRoomOrder;
+    private LinearLayout llRoomOrder,llShopOrder;
     private Context context;
 
     @Override
@@ -38,6 +39,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private void initView() {
         llRoomOrder = (LinearLayout) getView().findViewById(R.id.ll_mine_room_order);
         llRoomOrder.setOnClickListener(this);
+        llShopOrder = (LinearLayout) getView().findViewById(R.id.ll_mine_shop_order);
+        llShopOrder.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +48,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.ll_mine_room_order:
                 IntentUtils.getIntent((Activity) context, MyOrderActivity.class);
+                break;
+            case R.id.ll_mine_shop_order:
+                IntentUtils.getIntent((Activity) context, MyShopOrderActivity.class);
                 break;
         }
     }

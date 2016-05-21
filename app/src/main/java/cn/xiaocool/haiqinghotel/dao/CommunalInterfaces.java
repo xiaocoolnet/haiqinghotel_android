@@ -32,6 +32,7 @@ public interface CommunalInterfaces {
 
     int MINE_ROOM_ORDER = 0x0400;
     int MINE_CATERING_ORDER = 0x0401;
+    int MINE_SHOP_ORDER = 0x0402;
 
 
     //others  0x0500开始

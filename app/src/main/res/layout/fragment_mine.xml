@@ -166,6 +166,7 @@
 
     <!--菜单条目1-->
     <LinearLayout
+        android:id="@+id/ll_mine_shop_order"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_size_60"
         android:orientation="horizontal">

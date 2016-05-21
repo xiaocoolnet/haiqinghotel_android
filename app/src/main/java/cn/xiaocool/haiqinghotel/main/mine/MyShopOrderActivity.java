@@ -1,14 +1,12 @@
-package cn.xiaocool.haiqinghotel.fragment;
+package cn.xiaocool.haiqinghotel.main.mine;
 
-import android.app.Fragment;
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,8 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import cn.xiaocool.haiqinghotel.R;
-import cn.xiaocool.haiqinghotel.adapter.MineCateringOrderAdapter;
 import cn.xiaocool.haiqinghotel.adapter.MineRoomOrderAdapter;
+import cn.xiaocool.haiqinghotel.adapter.MineShopOrderAdapter;
 import cn.xiaocool.haiqinghotel.dao.CommunalInterfaces;
 import cn.xiaocool.haiqinghotel.net.request.MineRequest;
 import cn.xiaocool.haiqinghotel.net.request.NetUtil;
@@ -30,19 +28,18 @@ import cn.xiaocool.haiqinghotel.net.request.NetUtil;
 /**
  * Created by wzh on 2016/5/21.
  */
-public class MineOrderCateringFragment extends Fragment implements View.OnClickListener {
-    private Context context;
-
+public class MyShopOrderActivity extends Activity implements View.OnClickListener {
     private ListView listView;
     private ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
     private String[] pic, name, count, price, time;
+    private String a;
     private RelativeLayout btnback;
     private TextView tvTitle;
-    private MineCateringOrderAdapter mineCateringOrderAdapter;
+    private MineShopOrderAdapter mineShopOrderAdapter;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case CommunalInterfaces.MINE_CATERING_ORDER:
+                case CommunalInterfaces.MINE_SHOP_ORDER:
                     JSONObject jsonObject = (JSONObject) msg.obj;
                     try {
                         String status = jsonObject.getString("status");
@@ -70,8 +67,8 @@ public class MineOrderCateringFragment extends Fragment implements View.OnClickL
                                 hashMap.put("time", time[i]);
                                 arrayList.add(hashMap);
                             }
-                            mineCateringOrderAdapter = new MineCateringOrderAdapter(context, arrayList);
-                            listView.setAdapter(mineCateringOrderAdapter);
+                            mineShopOrderAdapter = new MineShopOrderAdapter(MyShopOrderActivity.this, arrayList);
+                            listView.setAdapter(mineShopOrderAdapter);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -81,29 +78,30 @@ public class MineOrderCateringFragment extends Fragment implements View.OnClickL
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.mine_catering_order, container, false);
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        context = getActivity();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.mine_shop_order);
         initView();
-        if (NetUtil.isConnnected(context)) {
-            Log.e("it is ok net","ok");
-            new MineRequest(context, handler).myCateringOrder();
+        if (NetUtil.isConnnected(this)) {
+            new MineRequest(this, handler).myShopOrder();
         }
     }
 
     private void initView() {
-        listView = (ListView) getView().findViewById(R.id.lv_mine_catering_order);
+        listView = (ListView) findViewById(R.id.lv_mine_shopOrder);
+        btnback = (RelativeLayout) findViewById(R.id.btn_back);
+        btnback.setOnClickListener(this);
+        tvTitle = (TextView) findViewById(R.id.top_title);
+        tvTitle.setText(this.getString(R.string.mine_title_orderRoom));
     }
 
     @Override
     public void onClick(View v) {
-        
+        switch (v.getId()) {
+            case R.id.btn_back:
+                finish();
+                break;
+        }
     }
 }

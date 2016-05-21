@@ -65,4 +65,24 @@ public class MineRequest {
             }
         }.start();
     }
+    //获取我的餐饮订单
+    public void myShopOrder() {
+        new Thread() {
+            Message msg = Message.obtain();
+
+            public void run() {
+                String data = "&userid=" + 578;
+                String result_data = NetUtil.getResponse(WebAddress.MINE_SHOP_ORDER, data);
+                try {
+                    JSONObject obj = new JSONObject(result_data);
+                    msg.what = CommunalInterfaces.MINE_SHOP_ORDER;
+                    msg.obj = obj;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
+    }
 }
