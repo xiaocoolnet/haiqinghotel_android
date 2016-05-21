@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 
 import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.adapter.HomeOnsaleListAdapter;
+import cn.xiaocool.haiqinghotel.main.homepage.CalenderMainActivity;
 import cn.xiaocool.haiqinghotel.main.homepage.CateringIntroActivity;
 import cn.xiaocool.haiqinghotel.main.homepage.ContactUsActivity;
 import cn.xiaocool.haiqinghotel.main.homepage.HomeReserveNowActivity;
@@ -39,12 +41,14 @@ import cn.xiaocool.haiqinghotel.dao.CommunalInterfaces;
  * Created by wzh on 2016/4/28.
  */
 public class HomePageFragment extends Fragment implements View.OnClickListener {
-    private RelativeLayout btnLocation, btnContact, btn_Details;
+    private RelativeLayout btnLocation, btnContact, btn_Details, rlInday, rlOutday;
     private Context context;
     private ListView onsaleList;
     private Button btnReserveNow;
+    private TextView tvInday, tvOutday;
     private HomeOnsaleListAdapter homeOnsaleListAdapter;
     private String[] picName, name, intro, price, id, type;
+    private long msInDay, msOutDay;
     private ArrayList<HashMap<String, Object>> arrayList;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -94,6 +98,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             }
         }
     };
+    private String textInday;
+    private String textOutday;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -131,8 +137,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     if (type.equals("2")) {
                         Intent intent = new Intent();
                         intent.setClass(context, CateringIntroActivity.class);
-                        intent.putExtra("cateringId",goodId);
-                        intent.putExtra("cateringName",goodName);
+                        intent.putExtra("cateringId", goodId);
+                        intent.putExtra("cateringName", goodName);
                         startActivity(intent);
                     }
                 }
@@ -151,6 +157,41 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         arrayList = new ArrayList<>();
         btnReserveNow = (Button) getView().findViewById(R.id.home_btn_reserve_now);
         btnReserveNow.setOnClickListener(this);
+        rlInday = (RelativeLayout) getView().findViewById(R.id.home_rl_inputDate);
+        rlInday.setOnClickListener(this);
+        rlOutday = (RelativeLayout) getView().findViewById(R.id.home_rl_outputDate);
+        rlOutday.setOnClickListener(this);
+        tvInday = (TextView) getView().findViewById(R.id.tv_inday);
+        tvOutday = (TextView) getView().findViewById(R.id.tv_outday);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            String indayMonNum = data.getStringExtra("inDayMonth1");
+            String indayDayNum = data.getStringExtra("inDayNum0");
+            String outdayMonNum = data.getStringExtra("outMonth1");
+            String outdayDayNum = data.getStringExtra("outDayNum0");
+            long dayCount = data.getLongExtra("dayCount", 0);
+            msInDay = data.getLongExtra("msInDate", 0);
+            msOutDay = data.getLongExtra("msOutDate", 0);
+            Log.e("ms in out day is", String.valueOf(msInDay + "bbb" + msOutDay));
+            Log.e("五个数：", indayMonNum + indayDayNum + outdayMonNum + outdayDayNum + "ccc" + dayCount);
+            textInday = indayMonNum + "月" + indayDayNum + "日";
+            textOutday = outdayMonNum + "月" + outdayDayNum + "日";
+            tvInday.setText(textInday);
+            tvOutday.setText(textOutday);
+//            textChechIn = "入住：" + indayMonNum + "月" + indayDayNum + "日";
+//            tvInday.setText(textChechIn);
+//            textCheckOut = "离店：" + outdayMonNum + "月" + outdayDayNum + "日";
+//            tvOutday.setText(textCheckOut);
+//            tvDayCount.setText("共" + dayCount + "晚");
+//            int intPrice = Integer.parseInt(price);
+//            int count = (int) (dayCount * intPrice);
+//            Log.e("count is", String.valueOf(count));
+//            tvTotalPrice.setText("" + count);
+        }
     }
 
     @Override
@@ -160,8 +201,24 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 IntentUtils.getIntent((Activity) context, ContactUsActivity.class);
                 break;
             case R.id.home_btn_reserve_now:
-                IntentUtils.getIntent((Activity) context, HomeReserveNowActivity.class);
+                Intent intent2 = new Intent();
+                intent2.setClass(context,HomeReserveNowActivity.class);
+                intent2.putExtra("msInDay", msInDay);
+                intent2.putExtra("msOutDay", msOutDay);
+                intent2.putExtra("textCheckIn","入住：" + textInday);
+                intent2.putExtra("textCheckOut","离店" + textOutday);
+                intent2.putExtra("bedsize",textOutday);
+                intent2.putExtra("network",textOutday);
+                intent2.putExtra("roomId",id);
+                startActivity(intent2);
+//                IntentUtils.getIntent((Activity) context, HomeReserveNowActivity.class);
                 break;
+            case R.id.home_rl_inputDate:
+                Intent intent0 = new Intent(context, CalenderMainActivity.class);
+                startActivityForResult(intent0, 1);
+                break;
+            case R.id.home_rl_outputDate:
+                Intent intent1 = new Intent();
         }
     }
 }

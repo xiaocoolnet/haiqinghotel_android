@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -92,6 +93,8 @@ public class HomeReserveNowActivity extends Activity implements View.OnClickList
             }
         }
     };
+    private String inDay;
+    private String outDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,16 +102,27 @@ public class HomeReserveNowActivity extends Activity implements View.OnClickList
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.homepage_reserve);
         initView();
+        Intent intent = getIntent();
+        inDay = intent.getStringExtra("textCheckIn");
+        outDay = intent.getStringExtra("textCheckOut");
+        Log.e("this.inday is",inDay);
+        Log.e("this.outday is",outDay);
+//        intent.getStringExtra("bedsize");
+//        intent.getStringExtra("network");
+//        intent.getStringExtra("roomId");
         if (NetUtil.isConnnected(this)) {
             new HomepageRequest(this, handler).homeReserveRoom();
         }
+        Log.e("执行","");
         onItemClick();
     }
 
     private void onItemClick() {
+        Log.e("进入进入进入","");
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("点击点击点击","");
                 HashMap<String,String> intentMap = (HashMap<String, String>) homePageReserveAdapter.getItem(position);
 //                String intentPic = intentMap.get("pic");
 //                String intentName = intentMap.get("name");
@@ -121,10 +135,14 @@ public class HomeReserveNowActivity extends Activity implements View.OnClickList
                 String intentBedsize = intentMap.get("bedsize");
                 String intentNet = intentMap.get("network");
                 Intent intent = new Intent();
+                intent.setClass(HomeReserveNowActivity.this,BookingNowActivity.class);
                 intent.putExtra("roomId",intentId);
                 intent.putExtra("bedsize",intentBedsize);
                 intent.putExtra("network",intentNet);
-                intent.setClass(HomeReserveNowActivity.this,BookingNowActivity.class);
+                intent.putExtra("textCheckIn",inDay);
+                intent.putExtra("textCheckOut",outDay);
+                Log.e("intentintentintent","");
+                startActivity(intent);
             }
         });
     }

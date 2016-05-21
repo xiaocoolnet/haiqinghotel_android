@@ -46,5 +46,6 @@
     <string name="mine_item_reserve">酒店预订</string>
     <string name="mine_item_order_form">商城订单</string>
     <string name="mine_item_vip_rank">会员积分</string>
+    <string name="mine_title_orderRoom">我的预订</string>
 
 </resources>

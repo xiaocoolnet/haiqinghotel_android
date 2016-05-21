@@ -94,6 +94,7 @@
 
 
         <!--我的活动注册-->
+        <activity android:name=".main.mine.MyRoomOrderActivity"></activity>
 
 
 

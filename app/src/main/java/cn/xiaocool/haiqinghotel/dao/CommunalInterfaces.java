@@ -13,10 +13,6 @@ public interface CommunalInterfaces {
     int LOGIN = 0x0004;//登录
 
 
-
-
-
-
     //homepage number 0x0100开始
     int ONSALE_LIST = 0x0100;
     int ROOM_DETAILS = 0x0101;
@@ -26,28 +22,19 @@ public interface CommunalInterfaces {
     int HOME_RESERVE_ROOM = 0x0105;
 
 
-
-
     //ecshop number 0x0200开始
-
-
-
 
 
     //facility number 0x0300开始
 
 
-
-
     //mine number  0x0400开始
 
-
-
+    int MINE_ROOM_ORDER = 0x0400;
+    int MINE_CATERING_ORDER = 0x0401;
 
 
     //others  0x0500开始
-
-
 
 
 }

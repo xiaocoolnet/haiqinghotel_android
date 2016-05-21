@@ -2,6 +2,8 @@ package cn.xiaocool.haiqinghotel.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,28 +13,26 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
-import org.w3c.dom.Text;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Objects;
 
 import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.net.constant.NetBaseConstant;
 
 /**
- * Created by wzh on 2016/5/8.
+ * Created by wzh on 2016/5/21.
  */
-public class HomeOnsaleListAdapter extends BaseAdapter {
+public class MineRoomOrderAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
-    private ArrayList<HashMap<String, Object>> arrayList;
+    private ArrayList<HashMap<String, String>> arrayList;
     private DisplayImageOptions displayImageOptions;
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
-    public HomeOnsaleListAdapter(Context context, ArrayList<HashMap<String, Object>> arrayList) {
+    public MineRoomOrderAdapter(Context context, ArrayList<HashMap<String, String>> arrayList) {
         this.layoutInflater = LayoutInflater.from(context);
         this.arrayList = arrayList;
         displayImageOptions = new DisplayImageOptions.Builder()
@@ -58,17 +58,29 @@ public class HomeOnsaleListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //加载布局,绑定组件
-        convertView = layoutInflater.inflate(R.layout.home_onsale_list_item, null);
-        ImageView onsalePic = (ImageView) convertView.findViewById(R.id.home_onsale_pic);
-        TextView onsaleName = (TextView) convertView.findViewById(R.id.home_onsale_name);
-        TextView onsaleIntro = (TextView) convertView.findViewById(R.id.home_onsale_intro);
-        TextView onsalePrice = (TextView) convertView.findViewById(R.id.home_onsale_price);
-        String picName = arrayList.get(position).get("picName").toString();
-        onsaleName.setText(arrayList.get(position).get("name").toString());
-        onsaleIntro.setText(arrayList.get(position).get("intro").toString());
-        onsalePrice.setText(arrayList.get(position).get("price").toString());
-        imageLoader.displayImage(NetBaseConstant.NET_PIC_PREFIX + picName, onsalePic, displayImageOptions);
+        convertView = layoutInflater.inflate(R.layout.mine_room_order_item, null);
+        //初始化控件
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.ig_mine_order_room);
+        TextView tvName = (TextView) convertView.findViewById(R.id.tv_mine_order_name);
+        TextView tvCount = (TextView) convertView.findViewById(R.id.tv_mine_order_count);
+        TextView tvPrice = (TextView) convertView.findViewById(R.id.tv_mine_order_price);
+        TextView tvTime = (TextView) convertView.findViewById(R.id.tv_mine_order_time);
+        String pic = arrayList.get(position).get("pic");
+        String name = arrayList.get(position).get("name");
+        String count = arrayList.get(position).get("count");
+        String price = arrayList.get(position).get("price");
+        String time = arrayList.get(position).get("time");
+
+        long msTime = Long.parseLong(time);
+        Date d = new Date(msTime);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+
+        String date = sdf.format(d);
+        tvName.setText(name);
+        tvCount.setText(count);
+        tvPrice.setText(price);
+        tvTime.setText(date);
+        imageLoader.displayImage(NetBaseConstant.NET_PIC_PREFIX + pic, imageView, displayImageOptions);
         return convertView;
     }
 }

@@ -46,4 +46,13 @@ public interface WebAddress extends NetBaseConstant {
      */
     String HOME_RESERVE_ROOM = NET_BASE_PREFIX + "a=getbedroomlist";
 
+    /**
+     * 获取我的房间订单
+     */
+    String MINE_ROOM_ORDER = NET_BASE_PREFIX + "a=getbookingorderlist";
+    /**
+     * 获取我的餐饮订单
+     */
+    String MINE_CATERING_ORDER = NET_BASE_PREFIX + "a=getbookingorderlist";
+
 }
