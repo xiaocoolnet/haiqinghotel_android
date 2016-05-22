@@ -10,6 +10,7 @@
         android:layout_marginTop="@dimen/activity_size_5"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_size_150"
+        android:scaleType="fitCenter"
         android:layout_gravity="center_horizontal"/>
     <TextView
         android:id="@+id/home_onsale_name"

@@ -90,7 +90,7 @@
 
 
         <!--设施活动注册-->
-
+        <activity android:name=".main.facility.FacilityRoomDetailsActivity"></activity>
 
 
         <!--我的活动注册-->
@@ -100,6 +100,8 @@
         <activity android:name=".main.mine.MineRoomDetailsActivity"></activity>
         <activity android:name=".main.mine.MineCateringDetailsActivity"></activity>
         <activity android:name=".main.mine.MineShopDetailsActivity"></activity>
+        <activity android:name=".main.mine.MineSettingActivity"></activity>
+        <activity android:name=".main.mine.ChangePasswordActivity"></activity>
 
 
 

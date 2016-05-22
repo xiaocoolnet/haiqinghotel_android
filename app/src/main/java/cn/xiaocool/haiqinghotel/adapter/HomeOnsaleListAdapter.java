@@ -35,10 +35,11 @@ public class HomeOnsaleListAdapter extends BaseAdapter {
     public HomeOnsaleListAdapter(Context context, ArrayList<HashMap<String, Object>> arrayList) {
         this.layoutInflater = LayoutInflater.from(context);
         this.arrayList = arrayList;
-        displayImageOptions = new DisplayImageOptions.Builder()
-                .bitmapConfig(Bitmap.Config.RGB_565).imageScaleType(ImageScaleType.IN_SAMPLE_INT)
-                .showImageOnLoading(R.mipmap.default_loading).showImageOnFail(R.mipmap.default_loading)
-                .cacheInMemory(true).cacheOnDisc(true).build();
+//        displayImageOptions = new DisplayImageOptions.Builder()
+//                .bitmapConfig(Bitmap.Config.RGB_565)
+//                .showImageOnLoading(R.mipmap.default_loading).showImageOnFail(R.mipmap.default_loading)
+//                .cacheInMemory(true).cacheOnDisc(true).build();
+        displayImageOptions = new DisplayImageOptions.Builder().showImageOnLoading(R.mipmap.default_loading).showImageOnFail(R.mipmap.default_loading).cacheInMemory(true).cacheOnDisc(true).build();
     }
 
     @Override

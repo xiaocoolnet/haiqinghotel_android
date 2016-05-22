@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import cn.xiaocool.haiqinghotel.R;
+import cn.xiaocool.haiqinghotel.main.mine.MineSettingActivity;
 import cn.xiaocool.haiqinghotel.main.mine.MyOrderActivity;
 import cn.xiaocool.haiqinghotel.main.mine.MyRoomOrderActivity;
 import cn.xiaocool.haiqinghotel.main.mine.MyShopOrderActivity;
@@ -21,6 +23,7 @@ import cn.xiaocool.haiqinghotel.utils.IntentUtils;
 public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout llRoomOrder,llShopOrder;
     private Context context;
+    private ImageView ivSetting;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         llRoomOrder.setOnClickListener(this);
         llShopOrder = (LinearLayout) getView().findViewById(R.id.ll_mine_shop_order);
         llShopOrder.setOnClickListener(this);
+        ivSetting = (ImageView) getView().findViewById(R.id.mine_btn_setting);
+        ivSetting.setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +56,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ll_mine_shop_order:
                 IntentUtils.getIntent((Activity) context, MyShopOrderActivity.class);
+                break;
+            case R.id.mine_btn_setting:
+                IntentUtils.getIntent((Activity) context, MineSettingActivity.class);
                 break;
         }
     }

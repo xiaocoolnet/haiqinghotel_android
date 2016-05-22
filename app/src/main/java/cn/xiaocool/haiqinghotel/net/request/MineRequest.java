@@ -85,4 +85,49 @@ public class MineRequest {
             }
         }.start();
     }
+
+
+
+    //发送验证码
+    public void sendCode(final String phoNum) {
+        new Thread() {
+            Message msg = Message.obtain();
+
+            public void run() {
+                String data = "&phone=" + phoNum;
+                String result_data = NetUtil.getResponse(WebAddress.SEND_CODE, data);
+                try {
+                    JSONObject obj = new JSONObject(result_data);
+                    Log.e("code is", result_data);
+                    msg.what = CommunalInterfaces.SEND_CODE;
+                    msg.obj = obj;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
+    }
+    //验证手机号密码
+    public void changePass(final String phoNum,final String code,final String password) {
+        new Thread() {
+            Message msg = Message.obtain();
+
+            public void run() {
+                String data = "&phone=" + phoNum + "&code=" + code + "&password=" + password;
+                String result_data = NetUtil.getResponse(WebAddress.CHANGE_PASS, data);
+                Log.e("success",result_data);
+                try {
+                    JSONObject obj = new JSONObject(result_data);
+                    msg.what = CommunalInterfaces.CHANGE_PASS;
+                    msg.obj = obj;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    handler.sendMessage(msg);
+                }
+            }
+        }.start();
+    }
 }

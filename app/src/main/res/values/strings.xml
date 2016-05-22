@@ -33,9 +33,15 @@
     <string name="home_catering_pre_price">优惠价：</string>
 
     <!--商城-->
+    <string name="shop_title">商城</string>
 
 
     <!--设施-->
+    <string name="facility_title">设施</string>
+    <string name="facility_room_title">房间设施</string>
+    <string name="facility_wedding_title">房间设施</string>
+    <string name="facility_meeting_title">会议设施</string>
+    <string name="facility_catering_title">餐饮设施</string>
 
 
     <!--我的-->
@@ -50,5 +56,12 @@
     <string name="mine_title_roomDetails">房间详情</string>
     <string name="mine_title_cateringDetails">餐饮详情</string>
     <string name="mine_title_shopDetails">订单详情</string>
+    <string name="mine_title_setting">设置</string>
+    <string name="mine_btn_password">修改密码</string>
+    <string name="mine_btn_clean">缓存清除</string>
+    <string name="mine_btn_about">关于我们</string>
+    <string name="mine_btn_exit">退出登录</string>
+    <string name="mine_title_change_password">修改密码</string>
+    <string name="mine_btn_confirm_change">确认修改</string>
 
 </resources>

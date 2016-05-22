@@ -9,7 +9,7 @@ public interface WebAddress extends NetBaseConstant {
      */
     String SEND_CODE = NET_BASE_PREFIX + "a=SendMobileCode";
     /**
-     * 发送验证码后缀
+     * 登录后缀
      */
     String LOGIN = NET_BASE_PREFIX + "a=applogin";
     /**
@@ -19,7 +19,7 @@ public interface WebAddress extends NetBaseConstant {
     /**
      * 修改密码
      */
-    String AMEND_PASS = NET_BASE_PREFIX + "a=forgetpwd";
+    String CHANGE_PASS = NET_BASE_PREFIX + "a=forgetpwd";
     /**
      * 首页促销列表
      */
@@ -58,5 +58,17 @@ public interface WebAddress extends NetBaseConstant {
      * 获取我的餐饮订单
      */
     String MINE_SHOP_ORDER = NET_BASE_PREFIX + "a=getshoppingorderlist";
+    /**
+     * 获取设施列表
+     */
+    String FACILITY_LIST = NET_BASE_PREFIX + "a=getFacilitytypelist";
+    /**
+     * 获取设施列表
+     */
+    String FACILITY_CLICK_LIST = NET_BASE_PREFIX + "a=getFacilitylist";
+    /**
+     * 获取商城列表
+     */
+    String SHOP_LIST = NET_BASE_PREFIX + "a=getshoppinglist";
 
 }

@@ -13,10 +13,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.dao.CommunalInterfaces;
@@ -31,6 +33,7 @@ import view.HQApplacation;
  */
 public class LoginActivity extends Activity implements View.OnClickListener {
     private Button btnLogin;
+    private TextView tvTitle;
     private RelativeLayout rlRegister;
     private EditText etPhoNUm, etPassword;
     private CheckBox cbRember;
@@ -99,6 +102,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         rlRegister.setOnClickListener(this);
         cbRember = (CheckBox) findViewById(R.id.cb_remember);
         cbRember.setOnClickListener(this);
+        tvTitle = (TextView) findViewById(R.id.top_title);
+        tvTitle.setText(this.getString(R.string.btn_login));
     }
 
     @Override
