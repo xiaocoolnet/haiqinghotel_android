@@ -2,6 +2,7 @@ package cn.xiaocool.haiqinghotel.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +26,8 @@ import cn.xiaocool.haiqinghotel.R;
 import cn.xiaocool.haiqinghotel.adapter.MineCateringOrderAdapter;
 import cn.xiaocool.haiqinghotel.adapter.MineRoomOrderAdapter;
 import cn.xiaocool.haiqinghotel.dao.CommunalInterfaces;
+import cn.xiaocool.haiqinghotel.main.mine.MineCateringDetailsActivity;
+import cn.xiaocool.haiqinghotel.main.mine.MineRoomDetailsActivity;
 import cn.xiaocool.haiqinghotel.net.request.MineRequest;
 import cn.xiaocool.haiqinghotel.net.request.NetUtil;
 
@@ -35,7 +39,7 @@ public class MineOrderCateringFragment extends Fragment implements View.OnClickL
 
     private ListView listView;
     private ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
-    private String[] pic, name, count, price, time;
+    private String[] pic, name, count, price, time,orderNum,peoName,remark,phoNum;
     private RelativeLayout btnback;
     private TextView tvTitle;
     private MineCateringOrderAdapter mineCateringOrderAdapter;
@@ -50,24 +54,36 @@ public class MineOrderCateringFragment extends Fragment implements View.OnClickL
                             JSONArray jsonArray = jsonObject.getJSONArray("data");
                             int length = jsonArray.length();
                             JSONObject dataObject;
+                            orderNum = new String[length];
+                            peoName = new String[length];
                             pic = new String[length];
                             name = new String[length];
                             count = new String[length];
                             price = new String[length];
                             time = new String[length];
+                            remark = new String[length];
+                            phoNum = new String[length];
                             for (int i = 0; i < length; i++) {
                                 dataObject = (JSONObject) jsonArray.get(i);
+                                orderNum[i] = dataObject.getString("order_num");
                                 pic[i] = dataObject.getString("picture");
+                                peoName[i] = dataObject.getString("peoplename");
                                 name[i] = dataObject.getString("name");
                                 count[i] = dataObject.getString("number");
                                 price[i] = dataObject.getString("price");
                                 time[i] = dataObject.getString("time");
+                                remark[i] = dataObject.getString("remarks");
+                                phoNum[i] = dataObject.getString("mobile");
                                 HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("orderNum", orderNum[i]);
                                 hashMap.put("pic", pic[i]);
                                 hashMap.put("name", name[i]);
+                                hashMap.put("peoName", peoName[i]);
                                 hashMap.put("count", count[i]);
                                 hashMap.put("price", price[i]);
                                 hashMap.put("time", time[i]);
+                                hashMap.put("remark",remark[i]);
+                                hashMap.put("phoNum",phoNum[i]);
                                 arrayList.add(hashMap);
                             }
                             mineCateringOrderAdapter = new MineCateringOrderAdapter(context, arrayList);
@@ -96,6 +112,30 @@ public class MineOrderCateringFragment extends Fragment implements View.OnClickL
             Log.e("it is ok net","ok");
             new MineRequest(context, handler).myCateringOrder();
         }
+        setItemClick();
+    }
+    private void setItemClick() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                HashMap<String, Object> hashMap = (HashMap<String, Object>) mineCateringOrderAdapter.getItem(position);
+                String orderNum = (String) hashMap.get("orderNum");//订单号
+                String name = (String) hashMap.get("name");//餐饮名称
+                String peoName = (String) hashMap.get("peoName");//预订人
+                String count = (String) hashMap.get("count");//数量
+                String remark = (String) hashMap.get("remark");//备注
+                String phoNum = (String) hashMap.get("phoNum");// 联系方式
+                Intent intent = new Intent();
+                intent.putExtra("orderNum",orderNum);
+                intent.putExtra("name",name);
+                intent.putExtra("peoName",peoName);
+                intent.putExtra("count",count);
+                intent.putExtra("remark",remark);
+                intent.putExtra("phoNum",phoNum);
+                intent.setClass(context, MineCateringDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {

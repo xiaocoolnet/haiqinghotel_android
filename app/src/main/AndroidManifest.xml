@@ -97,6 +97,9 @@
         <activity android:name=".main.mine.MyRoomOrderActivity"></activity>
         <activity android:name=".main.mine.MyOrderActivity"></activity>
         <activity android:name=".main.mine.MyShopOrderActivity"></activity>
+        <activity android:name=".main.mine.MineRoomDetailsActivity"></activity>
+        <activity android:name=".main.mine.MineCateringDetailsActivity"></activity>
+        <activity android:name=".main.mine.MineShopDetailsActivity"></activity>
 
 
 
