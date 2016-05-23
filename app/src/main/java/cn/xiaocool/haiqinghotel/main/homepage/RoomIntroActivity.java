@@ -72,7 +72,7 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
                                 tvRoomFloor.setText(roomFloor);
                                 tvRoomArea.setText(roomArea);
                                 tvBedSize.setText(bedSize);
-                                tvTotalPrice.setText(price);
+                                tvTotalPrice.setText("¥" + price);
                             }
 
                         } catch (JSONException e) {
@@ -85,6 +85,7 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
 
         }
     };
+    private long dayCount;
 
 
     @Override
@@ -108,7 +109,7 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
             String indayDayNum = data.getStringExtra("inDayNum0");
             String outdayMonNum = data.getStringExtra("outMonth1");
             String outdayDayNum = data.getStringExtra("outDayNum0");
-            long dayCount = data.getLongExtra("dayCount",0);
+            dayCount = data.getLongExtra("dayCount",0);
             msInDay = data.getLongExtra("msInDate",0);
             msOutDay = data.getLongExtra("msOutDate",0);
             Log.e("ms in out day is", String.valueOf(msInDay + "bbb" + msOutDay));
@@ -121,7 +122,7 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
             int intPrice = Integer.parseInt(price);
             int count = (int) (dayCount * intPrice);
             Log.e("count is", String.valueOf(count));
-            tvTotalPrice.setText("" + count);
+            tvTotalPrice.setText("¥" + count);
         }
     }
 
@@ -167,6 +168,7 @@ public class RoomIntroActivity extends Activity implements View.OnClickListener 
                 reserveIntent.putExtra("msOutDay",msOutDay);
                 Log.e("room id isisisis",roomId);
                 reserveIntent.putExtra("roomId",roomId);
+                reserveIntent.putExtra("dayCount",dayCount);
                 startActivity(reserveIntent);
                 break;
             case R.id.reserve_choose_date:

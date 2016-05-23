@@ -46,9 +46,9 @@ public class HQApplacation extends Application {
     public static void initImageLoader(Context context) {
         File cacheDir = StorageUtils.getOwnCacheDirectory(context, "wxt_parent/Cache");// 获取到缓存的目录地址
         // 创建配置ImageLoader(所有的选项都是可选的,只使用那些你真的想定制)，这个可以设定在APPLACATION里面，设置为全局的配置参数
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).memoryCacheExtraOptions(480, 800)
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).memoryCacheExtraOptions(1000, 1000)
                 // max width,max height，即保存的每个缓存文件的最大长宽default=device screen dimensions
-                .discCacheExtraOptions(480, 800, Bitmap.CompressFormat.JPEG, 75, null)
+                .discCacheExtraOptions(1000, 1000, Bitmap.CompressFormat.JPEG, 75, null)
                 // Can slow ImageLoader, use it carefully (Better don't use
                 // it)设置缓存的详细信息，最好不要设置这个
                 .threadPoolSize(5)// 线程池内加载的数量

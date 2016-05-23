@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/activity_top"></include>
+    <include layout="@layout/activity_top1"></include>
 
     <ListView
         android:id="@+id/shop_good_list"

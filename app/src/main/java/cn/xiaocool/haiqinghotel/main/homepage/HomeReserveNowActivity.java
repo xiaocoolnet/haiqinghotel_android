@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -31,10 +32,11 @@ import cn.xiaocool.haiqinghotel.net.request.NetUtil;
 public class HomeReserveNowActivity extends Activity implements View.OnClickListener {
     private ListView listView;
     private TextView tvTitle;
+    private RelativeLayout btnExit;
     private HomePageReserveAdapter homePageReserveAdapter;
     private ArrayList<HashMap<String, String>> arrayList;
-    private int length,i;
-    private String[] id,pic, name, price, oprice, acreage,network, repast, bedsize, adtitle, floor;
+    private int length, i;
+    private String[] id, pic, name, price, oprice, acreage, network, repast, bedsize, adtitle, floor;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -48,7 +50,7 @@ public class HomeReserveNowActivity extends Activity implements View.OnClickList
                             JSONObject dataObject;
                             network = new String[length];
                             id = new String[length];
-                            pic = new String [length];
+                            pic = new String[length];
                             name = new String[length];
                             price = new String[length];
                             oprice = new String[length];
@@ -71,20 +73,22 @@ public class HomeReserveNowActivity extends Activity implements View.OnClickList
                                 adtitle[i] = dataObject.getString("adtitle");
                                 floor[i] = dataObject.getString("floor");
                                 HashMap<String, String> hashMap = new HashMap<>();
-                                hashMap.put("id",id[i]);
-                                hashMap.put("pic",pic[i]);
+                                hashMap.put("id", id[i]);
+                                hashMap.put("pic", pic[i]);
                                 hashMap.put("name", name[i]);
                                 hashMap.put("price", price[i]);
                                 hashMap.put("oprice", oprice[i]);
                                 hashMap.put("acreage", acreage[i]);
-                                hashMap.put("network",network[i]);
+                                hashMap.put("network", network[i]);
                                 hashMap.put("repast", repast[i]);
                                 hashMap.put("bedsize", bedsize[i]);
                                 hashMap.put("adtitle", adtitle[i]);
                                 hashMap.put("floor", floor[i]);
+
                                 arrayList.add(hashMap);
                             }
-                            homePageReserveAdapter = new HomePageReserveAdapter(HomeReserveNowActivity.this, arrayList);
+                            homePageReserveAdapter = new HomePageReserveAdapter(HomeReserveNowActivity.this, arrayList,
+                                    inDay, outDay,msInday,msOutday,dayCount);
                             listView.setAdapter(homePageReserveAdapter);
                         }
                     } catch (JSONException e) {
@@ -95,6 +99,9 @@ public class HomeReserveNowActivity extends Activity implements View.OnClickList
     };
     private String inDay;
     private String outDay;
+    private long msInday;
+    private long msOutday;
+    private long dayCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,57 +112,67 @@ public class HomeReserveNowActivity extends Activity implements View.OnClickList
         Intent intent = getIntent();
         inDay = intent.getStringExtra("textCheckIn");
         outDay = intent.getStringExtra("textCheckOut");
-        Log.e("this.inday is",inDay);
-        Log.e("this.outday is",outDay);
+        dayCount = intent.getLongExtra("dayCount",1);
+        Log.e("in here daycount is", String.valueOf(dayCount));
+        msInday = intent.getLongExtra("msInDay",0);
+        msOutday = intent.getLongExtra("msOutDay",0);
+        Log.e("this.inday is", inDay);
+        Log.e("this.outday is", outDay);
 //        intent.getStringExtra("bedsize");
 //        intent.getStringExtra("network");
 //        intent.getStringExtra("roomId");
         if (NetUtil.isConnnected(this)) {
             new HomepageRequest(this, handler).homeReserveRoom();
         }
-        Log.e("执行","");
-        onItemClick();
+        Log.e("执行", "");
+//        onItemClick();
     }
 
-    private void onItemClick() {
-        Log.e("进入进入进入","");
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("点击点击点击","");
-                HashMap<String,String> intentMap = (HashMap<String, String>) homePageReserveAdapter.getItem(position);
-//                String intentPic = intentMap.get("pic");
-//                String intentName = intentMap.get("name");
-//                String intentPrice = intentMap.get("price");
-//                String intentOprice = intentMap.get("oprice");
-//                String intentAcreage = intentMap.get("acreage");
-//                String intentRepast = intentMap.get("repast");
-//                String intentFloor = intentMap.get("floor");
-                String intentId = intentMap.get("id");
-                String intentBedsize = intentMap.get("bedsize");
-                String intentNet = intentMap.get("network");
-                Intent intent = new Intent();
-                intent.setClass(HomeReserveNowActivity.this,BookingNowActivity.class);
-                intent.putExtra("roomId",intentId);
-                intent.putExtra("bedsize",intentBedsize);
-                intent.putExtra("network",intentNet);
-                intent.putExtra("textCheckIn",inDay);
-                intent.putExtra("textCheckOut",outDay);
-                Log.e("intentintentintent","");
-                startActivity(intent);
-            }
-        });
-    }
+//    private void onItemClick() {
+//        Log.e("进入进入进入", "");
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.e("点击点击点击", "");
+//                HashMap<String, String> intentMap = (HashMap<String, String>) homePageReserveAdapter.getItem(position);
+////                String intentPic = intentMap.get("pic");
+////                String intentName = intentMap.get("name");
+////                String intentPrice = intentMap.get("price");
+////                String intentOprice = intentMap.get("oprice");
+////                String intentAcreage = intentMap.get("acreage");
+////                String intentRepast = intentMap.get("repast");
+////                String intentFloor = intentMap.get("floor");
+//                String intentId = intentMap.get("id");
+//                String intentBedsize = intentMap.get("bedsize");
+//                String intentNet = intentMap.get("network");
+//                Intent intent = new Intent();
+//                intent.setClass(HomeReserveNowActivity.this, BookingNowActivity.class);
+//                intent.putExtra("roomId", intentId);
+//                intent.putExtra("bedsize", intentBedsize);
+//                intent.putExtra("network", intentNet);
+//                intent.putExtra("textCheckIn", inDay);
+//                intent.putExtra("textCheckOut", outDay);
+//                Log.e("intentintentintent", "");
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     private void initView() {
         tvTitle = (TextView) findViewById(R.id.top_title);
         tvTitle.setText(this.getString(R.string.home_btn_reserve_now));
         listView = (ListView) findViewById(R.id.home_reserve_now_room_list);
+        btnExit = (RelativeLayout) findViewById(R.id.btn_back);
+        btnExit.setOnClickListener(this);
         arrayList = new ArrayList<>();
     }
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.btn_back:
+                finish();
+                break;
+        }
     }
 }

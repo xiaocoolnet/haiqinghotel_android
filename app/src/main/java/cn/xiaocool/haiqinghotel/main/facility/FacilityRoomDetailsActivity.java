@@ -81,12 +81,13 @@ public class FacilityRoomDetailsActivity extends Activity implements View.OnClic
         setContentView(R.layout.facility_item_click_);
         listView = (ListView) findViewById(R.id.facility_click_list);
         tvTitle = (TextView) findViewById(R.id.top_title);
-        tvTitle.setText(this.getString(R.string.facility_room_title));
         btnExit = (RelativeLayout) findViewById(R.id.btn_back);
         btnExit.setOnClickListener(this);
         arrayList = new ArrayList<>();
         Intent intent = getIntent();
         String facilityId = intent.getStringExtra("facilityId");
+        String name = intent.getStringExtra("name");
+        tvTitle.setText(name);
         new FacilityRequest(this, handler).facilityClickList(facilityId);
     }
 

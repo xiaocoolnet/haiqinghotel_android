@@ -39,7 +39,10 @@ public class HomeOnsaleListAdapter extends BaseAdapter {
 //                .bitmapConfig(Bitmap.Config.RGB_565)
 //                .showImageOnLoading(R.mipmap.default_loading).showImageOnFail(R.mipmap.default_loading)
 //                .cacheInMemory(true).cacheOnDisc(true).build();
-        displayImageOptions = new DisplayImageOptions.Builder().showImageOnLoading(R.mipmap.default_loading).showImageOnFail(R.mipmap.default_loading).cacheInMemory(true).cacheOnDisc(true).build();
+        displayImageOptions = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.default_loading)
+                .showImageOnFail(R.mipmap.default_loading)
+                .cacheInMemory(true).cacheOnDisc(true).build();
     }
 
     @Override
@@ -63,13 +66,13 @@ public class HomeOnsaleListAdapter extends BaseAdapter {
         convertView = layoutInflater.inflate(R.layout.home_onsale_list_item, null);
         ImageView onsalePic = (ImageView) convertView.findViewById(R.id.home_onsale_pic);
         TextView onsaleName = (TextView) convertView.findViewById(R.id.home_onsale_name);
-        TextView onsaleIntro = (TextView) convertView.findViewById(R.id.home_onsale_intro);
+//        TextView onsaleIntro = (TextView) convertView.findViewById(R.id.home_onsale_intro);
         TextView onsalePrice = (TextView) convertView.findViewById(R.id.home_onsale_price);
         String picName = arrayList.get(position).get("picName").toString();
         onsaleName.setText(arrayList.get(position).get("name").toString());
-        onsaleIntro.setText(arrayList.get(position).get("intro").toString());
+//        onsaleIntro.setText(arrayList.get(position).get("intro").toString());
         onsalePrice.setText(arrayList.get(position).get("price").toString());
-        imageLoader.displayImage(NetBaseConstant.NET_PIC_PREFIX + picName, onsalePic, displayImageOptions);
+//        imageLoader.displayImage(NetBaseConstant.NET_PIC_PREFIX + picName, onsalePic, displayImageOptions);
         return convertView;
     }
 }

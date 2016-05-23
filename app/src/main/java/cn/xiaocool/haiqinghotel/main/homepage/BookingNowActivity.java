@@ -36,7 +36,7 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
     private LinearLayout llRoomNum, llArriveTime;
     private TextView tvTitle, tvRoomCount, tvArriveTime;
     private String roomCount, arriveTime, goodId;
-    private TextView tvIntro, tvCheckIn, tvCheckOUt;
+    private TextView tvIntro, tvCheckIn, tvCheckOUt,tvDayCount;
     private RelativeLayout rlExit;
     private String bedSize, network, checkIn, checkOut;
     private long msInDay, msOutDay;
@@ -60,6 +60,7 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
             }
         }
     };
+    private long dayCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
     }
 
     private void initView() {
+        tvDayCount = (TextView) findViewById(R.id.tv_dayCount);
         llRoomNum = (LinearLayout) findViewById(R.id.ll_room_num);
         llRoomNum.setOnClickListener(this);
         llArriveTime = (LinearLayout) findViewById(R.id.ll_arrive_time);
@@ -94,6 +96,7 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
         network = intent.getStringExtra("network");
         checkIn = intent.getStringExtra("textCheckIn");
         checkOut = intent.getStringExtra("textCheckOut");
+        dayCount = intent.getLongExtra("dayCount",1);
         Log.e("check in day is ",checkIn + checkOut);
         goodId = intent.getStringExtra("roomId");
         Log.e("roomId here is  ",goodId);
@@ -105,6 +108,7 @@ public class BookingNowActivity extends Activity implements View.OnClickListener
         tvCheckOUt.setText(checkOut);
         //介绍行
         tvIntro.setText(bedSize + this.getString(R.string.space) + network);
+        tvDayCount.setText("共" + dayCount + "晚");
     }
 
 

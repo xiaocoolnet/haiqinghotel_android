@@ -100,8 +100,10 @@ public class FacilityFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HashMap<String, Object> hashMap= (HashMap<String, Object>) facilityListAdapter.getItem(position);
                 String facilityId = (String) hashMap.get("id");
+                String name = (String) hashMap.get("name");
                 Intent intent = new Intent();
                 intent.putExtra("facilityId",facilityId);
+                intent.putExtra("name",name);
                 Log.e("facility id is ",facilityId);
                 intent.setClass(context, FacilityRoomDetailsActivity.class);
                 startActivity(intent);

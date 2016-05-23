@@ -60,7 +60,7 @@ public class FacilityListAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) convertView.findViewById(R.id.iv_facility_pic);
         TextView tvname = (TextView) convertView.findViewById(R.id.facility_tv_name);
         tvname.setText(arrayList.get(position).get("name"));
-        imageLoader.displayImage(NetBaseConstant.NET_PIC_PREFIX + picName, imageView, displayImageOptions);
+//        imageLoader.displayImage(NetBaseConstant.NET_PIC_PREFIX + picName, imageView, displayImageOptions);
         return convertView;
     }
 }

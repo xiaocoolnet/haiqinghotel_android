@@ -50,6 +50,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private String[] picName, name, intro, price, id, type;
     private long msInDay, msOutDay;
     private ArrayList<HashMap<String, Object>> arrayList;
+    private String textInday;
+    private String textOutday;
+//    private long dayCount;
+
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -98,8 +102,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             }
         }
     };
-    private String textInday;
-    private String textOutday;
+    private long dayCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -169,11 +172,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
+            Log.e("this daycount", "111111");
             String indayMonNum = data.getStringExtra("inDayMonth1");
             String indayDayNum = data.getStringExtra("inDayNum0");
             String outdayMonNum = data.getStringExtra("outMonth1");
             String outdayDayNum = data.getStringExtra("outDayNum0");
-            long dayCount = data.getLongExtra("dayCount", 0);
+//            dayCount = data.getLongExtra("dayCount",1);
+            dayCount = data.getLongExtra("dayCount",1);
+            Log.e("this daycount", String.valueOf(dayCount));
             msInDay = data.getLongExtra("msInDate", 0);
             msOutDay = data.getLongExtra("msOutDate", 0);
             Log.e("ms in out day is", String.valueOf(msInDay + "bbb" + msOutDay));
@@ -207,9 +213,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 intent2.putExtra("msOutDay", msOutDay);
                 intent2.putExtra("textCheckIn","入住：" + textInday);
                 intent2.putExtra("textCheckOut","离店" + textOutday);
-                intent2.putExtra("bedsize",textOutday);
-                intent2.putExtra("network",textOutday);
                 intent2.putExtra("roomId",id);
+                intent2.putExtra("dayCount",dayCount);
                 startActivity(intent2);
 //                IntentUtils.getIntent((Activity) context, HomeReserveNowActivity.class);
                 break;
